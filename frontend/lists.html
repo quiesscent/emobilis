@@ -7,11 +7,48 @@
         <title>Emobilis Front End</title>
         <link rel="stylesheet" href="./css/style.css" />
         <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+        <style>
+            ul {
+                color: red;
+            }
+            ul > li {
+                color: pink;
+            }
+            .apple {
+                background-color: red;
+            }
+            .banana {
+                background-color: yellow;
+            }
+            .cherry {
+                background-color: grey;
+            }
+            ol {
+                background-color: blue;
+            }
+            ol > li:hover {
+                background-color: purple;
+                color: black;
+            }
+        </style>
     </head>
 
     <body>
         <main>
             <h1>Lists</h1>
+            <h2>Unordered List</h2>
+            <ul>
+                <li class="apple">Apple</li>
+                <li class="banana">Banana</li>
+                <li class="cherry">Cherry</li>
+            </ul>
+
+            <h2>Ordered List</h2>
+            <ol>
+                <li>Step 1: Collect materials</li>
+                <li>Step 2: Follow the instructions</li>
+                <li>Step 3: Complete the project</li>
+            </ol>
         </main>
     </body>
 </html>
