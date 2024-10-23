@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Archivo+Black&family=Bree+Serif&family=Teko:wght@300..700&display=swap');
+
+* {
+    font-family: Bree Serif;
+}
+
+.navbar-brand {
+    margin-right: 75px;
+}
+.intro{
+    font-size: 75px;
+}
+
+.set {
+    width: 70%;
+    padding: 10px;
+}
+
+.space li {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.bg{
+    background: linear-gradient(rgb(0, 0, 0, .8), rgb(0, 0, 0, .8));
+}
+.header {
+    background: linear-gradient(rgb(0, 0, 0, .8), rgb(0, 0, 0, .8)), url('/img/back.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.hero {
+    padding-top: 40vh;
+}
+
+.name {
+    font-weight: bolder;
+}
+
+/* about start */
+.card-body {
+    padding: 30px;
+}
+
+.about {
+    background: linear-gradient(rgb(0, 0, 0, .8), rgb(0, 0, 0, .8)), url('/img/aboutbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.skills-sec {
+    display: flex;
+    flex: 1;
+}
+
+.sect-1 {
+    flex: 1
+}
+
+/* about end  */
+
+/* projects */
+.projects {
+    background: linear-gradient(rgb(0, 0, 0, .8), rgb(0, 0, 0, .8)), url('/img/projects.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* services */
+.services {
+    background: linear-gradient(rgb(0, 0, 0, .5), rgb(0, 0, 0, .5)), url('/img/services.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media all and (min-width: 2440px) {
+    .set {
+        width: 50%;
+    }
+
+    .space li {
+        margin-left: 50px;
+        margin-right: 80px;
+    }
+
+    .navbar-brand {
+        margin-right: 60px;
+    }
+}
