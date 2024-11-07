@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}| About  {% endblock title %}
+
+{% block content %}
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+          <div class="section-title">
+            <h2>About Us</h2>
+            <p>Our journey began with a passion for technology and problem-solving. As a back-end developer transitioning to full-stack capabilities, I embarked on a quest to create seamless digital experiences through websites, mobile applications, web apps, and effective database management.</p>
+          </div>
+          <div class="row content">
+            <div class="col-lg-6">
+              <p>
+              We provide you with the best software solutions, from management systems, school systems, e-commerce websites and consultation services.
+              </p>
+              <ul>
+                <li><i class="ri-check-double-line"></i> Hand in hand collaborations with our team. </li>
+                <li><i class="ri-check-double-line"></i> Systems that meet and surpass your expectations.</li>
+                <li><i class="ri-check-double-line"></i> Constant support and maintainance throughout.</li>
+              </ul>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0">
+              <p>
+                At the heart of necxlabs lies a relentless pursuit of excellence and innovation. We combine the latest advancements in technology with strategic thinking and creative prowess to craft bespoke solutions that cater to the unique needs and objectives of each client. From conceptualization to execution, our team of experts works collaboratively to ensure that every project surpasses expectations and delivers tangible results.
+              </p>
+              <a href="{% url 'services' %}" class="btn-learn-more">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </section><!-- End About Us Section -->
+      <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <div class="icon-box mt-5 mt-lg-0">
+              <i class="bx bx-receipt"></i>
+              <h4>Innovation</h4>
+              <p>We thrive on innovation, constantly exploring new technologies and creative solutions to drive your business forward in the ever-evolving digital landscape</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-cube-alt"></i>
+              <h4>Reliability</h4>
+              <p>Trust is the foundation of our relationship with clients. We pride ourselves on our reliability, delivering projects on time and exceeding expectations with every interaction.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-images"></i>
+              <h4>Scalability</h4>
+              <p>Our solutions are designed with scalability in mind, ensuring that they can grow and adapt alongside your business as you continue to expand and evolve.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-shield"></i>
+              <h4>Result-driven</h4>
+              <p> Our ultimate goal is your success. We are results-driven, focusing on delivering tangible outcomes and measurable impact that propel your business toward its goals.</p>
+            </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2" style="background-image: url('{% static 'img/features.jpg' %}');"></div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+{% endblock %}

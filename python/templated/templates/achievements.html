@@ -1,0 +1,225 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}| Portfolio {% endblock title %}
+
+{% block content %}
+<style>
+          .container{
+              max-width: 900px;
+          }
+          .test{
+            padding-bottom: 3rem;
+          }
+          .card{
+              border-radius: 1rem;
+              box-shadow: #00cc88;
+              color: #009961;
+          }
+          @media(max-width:767px){
+              .card{
+                  margin: 1rem 0.7rem 1rem;
+                  max-width: 80vw;
+              }
+          }
+          img{
+              width: 6.2rem;
+              border-radius: 5rem;
+              margin: 1.3rem auto 1rem auto;
+          }
+          .col-md-4{
+              padding:0  0.5rem;
+          }
+          .card-title{
+              font-size: 1rem;
+              margin-bottom: 0;
+              font-weight: bold;
+              font-family: 'IM Fell French Canon SC';
+          }
+          .card-text{
+              text-align: center;
+              padding: 1rem 2rem;
+              font-size: 0.8rem;
+              color: rgb(82, 81, 81);
+              line-height: 1.4rem;
+          }
+          .footer{
+              border-top: none;
+              text-align: center;
+              line-height: 1.2rem;
+              padding: 2rem 0 1.4rem 0;
+              font-family: 'Varela Round';
+              margin-bottom: -38px;
+              margin-top: -40px;
+          }
+          #name{
+              font-size: 1rem;
+              font-weight: bold;
+          }
+          #position{
+              font-size: 0.7rem;
+          }
+          a{
+              color: ##009961;
+              font-weight: bold;
+          }
+          a:hover{
+              color: #00cc88;
+          }
+</style>
+<section id="portfolio" class="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Portfolio</h2>
+        <p>Welcome to the showcase of necxlabs' finest work. Our portfolio is a testament to the creativity, expertise, and dedication of our team in delivering outstanding digital solutions for clients across various industries.</p>
+      </div>
+    </div>
+
+    {% comment %} <section id="counts" class="counts">
+        <div class="container">
+          <div class="text-center title">
+            <h3>What we have achieved so far</h3>
+            <p></p>
+          </div>
+
+          <div class="row counters position-relative">
+            <div class="col-lg-4 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter">7</span>
+              <p>Satisfied Clients</p>
+            </div>
+
+            <div class="col-lg-4 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter">10</span>
+              <p> Complete Projects</p>
+            </div>
+
+            <div class="col-lg-4 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter">1463</span>
+              <p>Hours Of Constant Support</p>
+            </div>
+            {% comment %} <div class="col-lg-3 col-6 text-center">
+              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter">5</span>
+              <p>Hard Workers</p>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Counts Section -->  {% endcomment %}
+</section>
+<div class="section-title container">
+  <h2>Our  Projects</h2>
+</div>
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+        <div class="container">
+          <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/mboga.png' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/jhome.png' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/logos.jpeg' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/logo.png' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/ecomlogo.jpeg' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/cef.png' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/necx.png' %}" class="img-fluid" alt="">
+              </div>
+            </div>
+
+            {% comment %} <div class="col-lg-3 col-md-4 col-xs-6">
+              <div class="client-logo">
+                <img src="{% static 'img/clients/client-8.png' %}" class="img-fluid" alt="">
+              </div>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </section><!-- End Clients Section -->
+
+      <div class="section-title container">
+        <h2>Testimonials</h2>
+      </div>
+
+      <div class="container test">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card d-flex mx-auto">
+                    <div class="card-image">
+                        <img class="img-fluid d-flex mx-auto" src="https://i.imgur.com/3TlwnLF.jpg">
+                    </div>
+                    <div class="footer">
+                      <span id="name">Murray Murgor<br></span>
+                      <span id="position">CEO and Founder <br> <a href="mbogadelivery.com">Mboga Delivery</a></span>
+                  </div>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                        Maecenas nec odio et ante tincidunt tempus
+                        Duis leo. Donec sodales sagittis magna
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card d-flex mx-auto">
+                    <div class="card-image">
+                        <img class="img-fluid d-flex mx-auto" src="https://i.imgur.com/Uz4FjGZ.jpg">
+                    </div>
+                    <div class="footer">
+                      <span id="name">Robinson Rokit<br></span>
+                      <span id="position">CEO and Founder <br><a href="">Computer Enginering Forum & CodeVista</a></span>
+                  </div>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                        Maecenas nec odio et ante tincidunt tempus
+                        Duis leo. Donec sodales sagittis magna
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card d-flex mx-auto ">
+                    <div class="card-image">
+                        <img class="img-fluid d-flex mx-auto" src="{% static 'img/clients/yuni.jpeg' %}">
+                    </div>
+                    <div class="footer">
+                      <span id="name">Eunice Lusweti<br></span>
+                      <span id="position">Barista & CEO<br><a href="">J's Home Cafe</a></span>
+                  </div>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                        Aenean massa. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                        Maecenas nec odio et ante tincidunt tempus
+                        Duis leo. Donec sodales sagittis magna
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

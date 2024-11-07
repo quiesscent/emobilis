@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block title %}| Quote {% endblock title %}
+
+{% block content %}
+<style>
+    .container{
+        padding-top: 20vh;
+        margin-bottom: 5%;
+    }
+    .row{
+        padding-left: 10px;
+    }
+</style>
+    <div class="container">
+        <div class="section-title">
+            <h2>Quote</h2>
+            <p></p>
+        </div>
+
+    <form class="row g-3 border-start border-5 border-success" method="POST">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Jane Doe" name="name">
+        </div>
+        <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="janedoe@gmail.com" name="email">
+        </div>
+        <div class="col-12">
+        <label for="inputAddress" class="form-label">Tell</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="enter with country code" name="tel">
+        </div>
+        <div class="col-12">
+        <label for="inputAddress2" class="form-label">Business Name</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Springs Resort" name="business">
+        </div>
+        <div class="col-md-5">
+        <label for="inputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" placeholder="Mars" name="city">
+        </div>
+        <div class="col-md-4">
+            <label for="inputService" class="form-label">Service</label>
+            <input type="text" class="form-control" id="inputService" placeholder="Web Development" name="service">
+        </div>
+        <div class="col-md-3">
+            <label for="inputMode" class="form-label">Mode of Communication</label>
+            <input type="text" class="form-control" id="inputMode" placeholder="email" name="mode">
+         </div>
+        <div class="col-12">
+        </div>
+        <div class="col-12 text-center">
+        <button type="submit" class="btn btn-outline-success">Order</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

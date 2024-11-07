@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}| Home{% endblock title %}
+
+{% block content %}
+<section id="hero" class="d-flex flex-column justify-content-center" style="background-image: url('{% static 'img/home.jpg' %}');"> 
+    <div class="container">
+        {% comment %} <video autoplay muted loop id="video-bg">
+            <source src="{% static 'videos/nx.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video> {% endcomment %}
+      <div class="row justify-content-center">
+        <div class="col-xl-8">
+          <h1>Necxlabs - The development home.</h1>
+          <h2>Defining Tomorrow</h2>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+{%endblock content%}

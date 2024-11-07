@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Necxlabs {% block title %}  {% endblock %}</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: KnightOne
+  * Template URL: https://bootstrapmade.com/knight-simple-one-page-bootstrap-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-xl-9 d-flex align-items-center justify-content-lg-between">
+          <h1 class="logo me-auto me-lg-0"><a href="/">Necxlabs inc.</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="{% static 'img/logo.png" alt="" class="img-fluid"></a>-->
+
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li><a class="nav-link " href="/">Home</a></li>
+              <li><a class="nav-link " href="{% url 'about' %}">About</a></li>
+              <li><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+              <li><a class="nav-link" href="{% url 'portfolio' %} ">Portfolio</a></li>
+              <li><a class="nav-link" href="{% url 'pricing' %}">Pricing</a></li>
+              <li><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"></i>
+          </nav><!-- .navbar -->
+          {% comment %} <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+            Toggle static offcanvas
+          </button> {% endcomment %}
+          <div class="offcanvas offcanvas-end w-50" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+            <div class="bg-dark" align="right">
+              <i class='bx bx-low-vision' data-bs-dismiss="offcanvas" style="color: white; font-size: 2rem;" align="right"></i>
+            </div>
+            <div class="offcanvas-body bg-dark" style="margin-left: 0%;">
+              <a class="text-white"href="/">Home</a><br><br>
+              <a class="text-white" href="{% url 'about' %}">About</a><br><br>
+              <a class="text-white" href="{% url 'services' %}">Services</a><br><br>
+              <a class="text-white" href="{% url 'portfolio' %} ">Portfolio</a><br><br>
+              <a class="text-white" href="{% url 'pricing' %}">Pricing</a><br><br>
+              <a class="text-white" href="{% url 'contact' %}">Contact</a>
+
+            </div>
+          </div>
+          <a href="{% url 'pricing' %}" class="get-started-btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header><!-- End Header -->
+  <main class="cotainer-fluid">
+
+      {% block content %}
+
+      {% endblock content %}
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container sticky-bottom">
+      <h3>Necxlabs inc.</h3>
+      <p>Pushing boundaries and exploring cutting-edge technologies.</p>
+      <div class="social-links">
+        <a href="" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="" class="linkedin"><i class='bx bxl-github'></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Necxlabs</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="/">necxlabsinc</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' }%"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' }%"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' }%"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js'}%"></script>
+
+</body>
+</html>
