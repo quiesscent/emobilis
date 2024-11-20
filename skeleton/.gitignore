@@ -4,3 +4,8 @@ lib/
 pyvenv.cfg
 conf.txt
 commands.txt
+*/__init__.py
+*/__pycache__/
+**/__init__.py
+**/__pycache__/
+staticfiles/
