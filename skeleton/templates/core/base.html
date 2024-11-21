@@ -104,11 +104,19 @@
                                 {% endif %}
                                 <div class="dropdown-menu">
                                     {% if request.user.is_authenticated %}
-                                    <a href="" class="dropdown-item">Dashboard</a>
-                                    <a href="" class="dropdown-item">Logout</a>
+                                        {% if request.user.user_type == 'patient' %}
+                                        <a href="{% url 'patients:dashboard' %}" class="dropdown-item">Dashboard</a>
+                                        {% elif request.user.user_type == 'institution' %}
+                                        <a href="{% url 'institutions:dashboard' %}" class="dropdown-item">Dashboard</a>
+                                        {% else %}
+                                        <a href="{% url 'doctors:dashboard' %}" class="dropdown-item">Dashboard</a>
+                                        {% endif %}
+                                    <a href="{% url 'acc:logout' %}" class="dropdown-item">Logout</a>
                                     {% else %}
-                                    <a href="" class="dropdown-item">Register</a>
-                                    <a href="" class="dropdown-item">Log In</a>
+                                    <a href="{% url 'acc:register' %}" class="dropdown-item">Patient</a>
+                                    <a href="{% url 'acc:register_doc' %}" class="dropdown-item">Doctor</a>
+                                    <a href="{% url 'acc:register_inst' %}" class="dropdown-item">Institution</a>
+                                    <a href="{% url  'acc:login' %}" class="dropdown-item">Log In</a>
                                     {% endif %}
                                 </div>
                             </div>

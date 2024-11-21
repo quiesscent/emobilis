@@ -1,18 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import DoctorProfile, CustomUser, PatientProfile
-
-
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = CustomUser
-        fields = ['email', 'username', 'password1', 'password2']
-
-
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = CustomUser
-        fields = ['email', 'username']
 
 
 class DoctorProfileForm(forms.ModelForm):

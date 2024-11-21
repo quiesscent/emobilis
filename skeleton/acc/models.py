@@ -5,6 +5,12 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class CustomUser(AbstractUser):
+    USER_TYPE_CHOICES = (
+        ('patient', 'Patient'),
+        ('doctor', 'Doctor'),
+        ('institution', 'Institution'),
+    )
+    user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)
 
