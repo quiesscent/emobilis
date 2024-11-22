@@ -25,13 +25,11 @@ class CustomUser(AbstractUser):
 
 class DoctorProfile(models.Model):
     doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    # employee_id = models.IntegerField(unique=True)
     date_of_birth = models.DateField()
     gender = models.CharField(default='', max_length=10)
     phone_number = models.IntegerField()
     specialization = models.CharField(default='', max_length=20)
     license_no = models.IntegerField()
-    department = models.CharField(default='', max_length=20)
     profile = models.ImageField(upload_to='doctors/')
 
     def __str__(self):

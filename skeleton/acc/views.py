@@ -115,7 +115,7 @@ def login_(request):
             elif user.user_type == 'institution':
                 return redirect('institutions:dashboard')
         else:
-            messages.error(request, 'Invalid email or password.')
+            messages.error(request, 'Invalid email or password. Contact Institution or Register')
 
     return render(request, 'login.html')
 
