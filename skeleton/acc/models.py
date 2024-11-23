@@ -13,6 +13,7 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, unique=True)
+    institution = models.CharField(max_length=10000, default='Private')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]
@@ -33,7 +34,7 @@ class DoctorProfile(models.Model):
     profile = models.ImageField(upload_to='doctors/')
 
     def __str__(self):
-        return f'{self.user.username} Doctor Profile'
+        return f'{self.user.username}'
 
 class PatientProfile(models.Model):
     patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -47,6 +48,6 @@ class PatientProfile(models.Model):
     profile = models.ImageField(upload_to='patients/')
 
     def __str__(self):
-        return f'{self.patient.username} Patient Profile'
+        return f'{self.patient.username}'
 
     

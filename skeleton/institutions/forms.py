@@ -33,6 +33,8 @@ class InPatientRecordForm(forms.ModelForm):
         model = InPatientRecord
         fields = '__all__'
         widgets = {
+            'patient':forms.Select(attrs={'class': 'form-control'}),
+            'assigned_doctor':forms.Select(attrs={'class': 'form-control'}),
             'reason_for_visit': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
             'sickness': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
             'diagnosis': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),

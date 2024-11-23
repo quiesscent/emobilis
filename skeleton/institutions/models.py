@@ -15,7 +15,7 @@ class Doctor(models.Model):
     department = models.CharField(default='', max_length=20)
 
     def __str__(self):
-        return f'{self.name } Doctor Profile'
+        return f'{self.name }'
 
 class Staff(models.Model):
     name = models.CharField(default='', max_length=100)
@@ -38,7 +38,7 @@ class Patient(models.Model):
     phone_number = models.IntegerField()
 
     def __str__(self):
-        return f'{self.name} Patient Profile'
+        return f'{self.name}'
 
 class InPatientRecord(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, to_field='patient_id')
@@ -70,7 +70,7 @@ class InPatientRecord(models.Model):
 
 
     def __str__(self):
-        return f'{self.name } Inpatient Profile'
+        return f'{self.name }'
 
 class OutPatientRecord(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, to_field='patient_id')
@@ -96,5 +96,38 @@ class OutPatientRecord(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.name} Outpatient Profile'
+        return f'{self.name}'
 
+
+class doctorAppointment(models.Model):
+    # Patient Information
+    full_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+    contact_number = models.CharField(max_length=15)  # Adjust length for international numbers
+
+    # Appointment Details
+    preferred_appointment_date = models.DateField()
+    preferred_time = models.CharField(
+        max_length=20,
+        choices=[
+            ('Morning', 'Morning'),
+            ('Afternoon', 'Afternoon'),
+            ('Evening', 'Evening')
+        ],
+        default='Morning'
+    )
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    reason_for_visit = models.TextField()
+    symptoms = models.TextField(blank=True, null=True)  # Optional field
+    emergency_contact_name = models.CharField(max_length=100)
+    emergency_contact_relationship = models.CharField(max_length=50)
+    emergency_contact_number = models.CharField(max_length=15)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['created_at'] 
+    
+    def __str__(self):
+        return f'{self.full_name} Appointment'

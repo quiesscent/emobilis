@@ -51,7 +51,7 @@ def updateDoctor(request, pk=None):
             password=form.cleaned_data['password']
             email=form.cleaned_data['email']
             user_type='doctor'
-            doc = CustomUser.objects.create_user(username=username, password=password, email=email, user_type=user_type)
+            doc = CustomUser.objects.create_user(username=username, password=password, email=email, user_type=user_type, institution=request.user.username)
             doc.save()
             form.save()
             messages.success(request, 'System change Success')
