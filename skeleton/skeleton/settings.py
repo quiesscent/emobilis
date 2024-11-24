@@ -39,15 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
+    'django_htmx',
     'core',
     'acc',
     'doctors',
     'institutions',
-    'management',
     'mindful',
     'patients',
     'pregnancy',
-    'therapy',
+    'conversations',
     'tinymce',
     'jazzmin',
     'rest_framework',
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware'
 ]
 
 ROOT_URLCONF = 'skeleton.urls'

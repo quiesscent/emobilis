@@ -3,6 +3,11 @@ from . import views
 app_name = 'institutions'
 urlpatterns = [
     path('', views.index, name='dashboard'),
+    path('doctors/', views.doctors, name='doctors'),
+    path('patients/', views.patients, name='patients'),
+    path('staff/', views.staff, name='staff'),
+    path('inpat/', views.inPatients, name='inpatients'),
+    path('outpat/', views.outPatients, name='outpatients'),
     
     # add urls
     path('add_p/', views.updatePatient, name='add_p'),

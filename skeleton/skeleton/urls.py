@@ -26,6 +26,5 @@ urlpatterns = [
     path('mindful/', include('mindful.urls')),
     path('patients/', include('patients.urls')),
     path('pregnancy/', include('pregnancy.urls')),
-    path('therapy/', include('therapy.urls')),
-    path('management/', include('management.urls')),
+    path('conversations/', include('conversations.urls')),
 ]

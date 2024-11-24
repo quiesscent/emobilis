@@ -8,7 +8,7 @@ from .models import Appointment
 
 def dashboard(request):
 
-    return render(request, 'doctors/dashboard.html')
+    return render(request, 'doc_dash.html')
 
 
 def updateInPatient(request, pk=None):
@@ -25,7 +25,7 @@ def updateInPatient(request, pk=None):
         else:
             form = InPatientRecordForm(instance=patient)
         
-    return render(request, 'institutions/patient.html', {'form': form})
+    return render(request, 'patient.html', {'form': form})
 
 
 def updateOutPatient(request, pk=None):
@@ -41,7 +41,7 @@ def updateOutPatient(request, pk=None):
             
         else:
             form = OutPatientRecordForm(instance=patient)
-    return render(request, 'institutions/patient.html', {'form': form})
+    return render(request, 'patient.html', {'form': form})
     
 
 def updatePatient(request, pk):
@@ -62,7 +62,7 @@ def updatePatient(request, pk):
         else:
             form = PatientForm(instance=patient)
             
-    return render(request, 'institutions/patient.html', {'form': form})
+    return render(request, 'patient.html', {'form': form})
 
 
 def appointments(request):

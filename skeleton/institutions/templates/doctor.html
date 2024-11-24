@@ -1,0 +1,50 @@
+{% extends 'institution.html' %}
+
+{% block content %}
+<!-- Bordered table start -->
+<section class="section">
+  <div class="row" id="table-bordered">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All Doctors</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+          </div>
+          <!-- table bordered -->
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Employee No.</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone No.</th>
+                  <th>Specialization</th>
+                  <th>Department</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for doctor in doctors %}
+                <tr>
+                  <td class="text-bold-500">{{ doctor.employee_id }}</td>
+                  <td>{{ doctor.name }}</td>
+                  <td class="text-bold-500">{{ doctor.email }}</td>
+                  <td>{{ doctor.phone_number }}</td>
+                  <td>{{ doctor.specialization }}</td>
+                  <td>{{ doctor.department }}</td>
+                  <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bordered table end -->
+{% endblock %}

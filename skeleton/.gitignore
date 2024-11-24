@@ -9,3 +9,4 @@ commands.txt
 **/__init__.py
 **/__pycache__/
 staticfiles/
+.vscode/

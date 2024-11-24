@@ -1,0 +1,52 @@
+{% extends 'institution.html' %}
+
+{% block content %}
+<!-- Bordered table start -->
+<section class="section">
+  <div class="row" id="table-bordered">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All In Patients</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+          </div>
+          <!-- table bordered -->
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Record ID</th>
+                  <th>Patient Name</th>
+                  <th>Sickness</th>
+                  <th>Diagnosis</th>
+                  <th>Room No.</th>
+                  <th>Assigned Doctor</th>
+                  <th>Dated Admitted</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for patient in patients %}
+                <tr>
+                  <td class="text-bold-500">{{ patient.record_id }}</td>
+                  <td>{{ patient.patient }}</td>
+                  <td class="text-bold-500">{{ patient.sickness }}</td>
+                  <td>{{ patient.diagnosis }}</td>
+                  <td>{{ patient.room_no  }}</td>
+                  <td>{{ patient.assigned_doctor }}</td>
+                  <td>{{ patient.date_addmitted }}</td>
+                  <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bordered table end -->
+{% endblock %}

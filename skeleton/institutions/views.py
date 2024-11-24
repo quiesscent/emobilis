@@ -7,8 +7,33 @@ from .forms import DoctorForm, PatientForm, OutPatientRecordForm, InPatientRecor
 # Create your views here.
 
 def index(request):
+    
+    return render(request, 'inst_dash.html')
 
-    return render(request, 'dashboard/institution.html')
+
+def doctors(request):
+    doctors = Doctor.objects.all().order_by('-id')
+    return render(request, 'doctor.html', { 'doctors': doctors })
+
+def patients(request):
+    patients = Patient.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'patients': patients })
+
+
+def outPatients(request):
+    patients = OutPatientRecord.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'patients': patients })
+
+
+def inPatients(request):
+    patients = InPatientRecord.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'patients': patients })
+
+
+def staff(request):
+    staffs = Staff.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'staffs': staffs })
+
 
 # update functions
 def updatePatient(request, pk=None):
@@ -32,7 +57,7 @@ def updatePatient(request, pk=None):
             'form': form
         }
     
-    return render(request, 'institutions/patient.html', context)
+    return render(request, 'patient.html', context)
 
 def updateDoctor(request, pk=None):
     if pk:
@@ -62,7 +87,7 @@ def updateDoctor(request, pk=None):
             'form': form
         }
     
-    return render(request, 'institutions/doctor.html', context)
+    return render(request, 'doctor.html', context)
 
 
 def updateStaff(request, pk=None):
@@ -86,7 +111,7 @@ def updateStaff(request, pk=None):
             'form': form
         }
     
-    return render(request, 'institutions/staff.html', context)
+    return render(request, 'staff.html', context)
 
 
 def updateInpatient(request, pk=None):
@@ -110,7 +135,7 @@ def updateInpatient(request, pk=None):
             'form': form
         }
     
-    return render(request, 'institutions/inpatient.html', context)
+    return render(request, 'inpatient.html', context)
 
 def updateOutpatient(request, pk=None):
     
@@ -134,7 +159,7 @@ def updateOutpatient(request, pk=None):
             'form': form
         }
     
-    return render(request, 'institutions/outpatient.html', context)
+    return render(request, 'outpatient.html', context)
 
 
 # delete functions
