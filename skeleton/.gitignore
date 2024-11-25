@@ -10,3 +10,4 @@ commands.txt
 **/__pycache__/
 staticfiles/
 .vscode/
+.env

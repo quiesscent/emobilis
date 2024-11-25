@@ -13,26 +13,26 @@ def index(request):
 
 def doctors(request):
     doctors = Doctor.objects.all().order_by('-id')
-    return render(request, 'doctor.html', { 'doctors': doctors })
+    return render(request, 'inst_doctor.html', { 'doctors': doctors })
 
 def patients(request):
     patients = Patient.objects.all().order_by('-id')
-    return render(request, 'patient.html', { 'patients': patients })
+    return render(request, 'inst_patient.html', { 'patients': patients })
 
 
 def outPatients(request):
     patients = OutPatientRecord.objects.all().order_by('-id')
-    return render(request, 'patient.html', { 'patients': patients })
+    return render(request, 'inst_patient.html', { 'patients': patients })
 
 
 def inPatients(request):
     patients = InPatientRecord.objects.all().order_by('-id')
-    return render(request, 'patient.html', { 'patients': patients })
+    return render(request, 'inst_patient.html', { 'patients': patients })
 
 
 def staff(request):
     staffs = Staff.objects.all().order_by('-id')
-    return render(request, 'patient.html', { 'staffs': staffs })
+    return render(request, 'inst_patient.html', { 'staffs': staffs })
 
 
 # update functions
@@ -57,7 +57,7 @@ def updatePatient(request, pk=None):
             'form': form
         }
     
-    return render(request, 'patient.html', context)
+    return render(request, 'inst_update_patient.html', context)
 
 def updateDoctor(request, pk=None):
     if pk:
@@ -87,7 +87,7 @@ def updateDoctor(request, pk=None):
             'form': form
         }
     
-    return render(request, 'doctor.html', context)
+    return render(request, 'inst_update_doctor.html', context)
 
 
 def updateStaff(request, pk=None):
@@ -111,7 +111,7 @@ def updateStaff(request, pk=None):
             'form': form
         }
     
-    return render(request, 'staff.html', context)
+    return render(request, 'inst_update_staff.html', context)
 
 
 def updateInpatient(request, pk=None):
@@ -135,7 +135,7 @@ def updateInpatient(request, pk=None):
             'form': form
         }
     
-    return render(request, 'inpatient.html', context)
+    return render(request, 'inst_update_inpatient.html', context)
 
 def updateOutpatient(request, pk=None):
     
@@ -159,7 +159,7 @@ def updateOutpatient(request, pk=None):
             'form': form
         }
     
-    return render(request, 'outpatient.html', context)
+    return render(request, 'inst_update_outpatient.html', context)
 
 
 # delete functions

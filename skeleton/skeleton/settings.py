@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-o!!$wn#9ho@et=m*29!xy&4*0%^8m7ych%3v@qd%p!87&-3*c@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'channels',
     'django_htmx',
     'core',
+    'mpesa',
     'acc',
     'doctors',
     'institutions',

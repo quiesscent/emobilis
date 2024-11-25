@@ -24,7 +24,7 @@
                   <th>Room No.</th>
                   <th>Assigned Doctor</th>
                   <th>Dated Admitted</th>
-                  <th>Actions</th>
+                  <th>Info</th>
                 </tr>
               </thead>
               <tbody>
@@ -37,7 +37,7 @@
                   <td>{{ patient.room_no  }}</td>
                   <td>{{ patient.assigned_doctor }}</td>
                   <td>{{ patient.date_addmitted }}</td>
-                  <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
+                  <td class="text-center"><a href="#"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

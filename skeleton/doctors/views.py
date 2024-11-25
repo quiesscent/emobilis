@@ -72,6 +72,19 @@ def appointments(request):
     }
     pass
 
+def patients(request):
+    patients = Patient.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'patients': patients })
+
+
+def outPatients(request):
+    patients = OutPatientRecord.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'patients': patients })
+
+
+def inPatients(request):
+    patients = InPatientRecord.objects.all().order_by('-id')
+    return render(request, 'patient.html', { 'patients': patients })
 
 def deleteappointments(request, pk):
     instance = get_object_or_404(Appointment, id=pk)

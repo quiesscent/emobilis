@@ -6,8 +6,15 @@ class DoctorForm(forms.ModelForm):
         model = Doctor
         fields = '__all__'  # Includes all fields in the model
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'employee_id': forms.NumberInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'password': forms.TextInput(attrs={'class': 'form-control'}),
+            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'type': 'date'}),
+            'gender': forms.TextInput(attrs={'class': 'form-control'}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
+            'specialization': forms.TextInput(attrs={'class': 'form-control'}),
+            'department': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class StaffForm(forms.ModelForm):
@@ -33,14 +40,19 @@ class InPatientRecordForm(forms.ModelForm):
         model = InPatientRecord
         fields = '__all__'
         widgets = {
-            'patient':forms.Select(attrs={'class': 'form-control'}),
-            'assigned_doctor':forms.Select(attrs={'class': 'form-control'}),
-            'reason_for_visit': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
-            'sickness': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
-            'diagnosis': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
-            'medication': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
-            'date_addmitted': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'date_discharged': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'patient': forms.Select(attrs={'class': 'form-control'}),
+            'reason_for_visit': forms.Textarea(attrs={'class': 'form-control'}),
+            'sickness': forms.Textarea(attrs={'rows': '5', 'class': 'form-control'}),
+            'diagnosis': forms.Textarea(attrs={'rows': '5','class': 'form-control'}),
+            'medication': forms.Textarea(attrs={'rows': '5','class': 'form-control'}),
+            'payment_method': forms.TextInput(attrs={'class': 'form-control'}),
+            'room_no': forms.NumberInput(attrs={'class': 'form-control'}),
+            'assigned_doctor': forms.Select(attrs={'class': 'form-control'}),
+            'next_of_kin_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'next_of_kin_contact': forms.NumberInput(attrs={'class': 'form-control'}),
+            'next_of_kin_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'date_addmitted': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'date_discharged': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
         }
 
 
