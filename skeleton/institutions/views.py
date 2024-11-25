@@ -22,17 +22,17 @@ def patients(request):
 
 def outPatients(request):
     patients = OutPatientRecord.objects.all().order_by('-id')
-    return render(request, 'inst_patient.html', { 'patients': patients })
+    return render(request, 'inst_outpatient.html', { 'patients': patients })
 
 
 def inPatients(request):
     patients = InPatientRecord.objects.all().order_by('-id')
-    return render(request, 'inst_patient.html', { 'patients': patients })
+    return render(request, 'inst_inpatient.html', { 'patients': patients })
 
 
 def staff(request):
     staffs = Staff.objects.all().order_by('-id')
-    return render(request, 'inst_patient.html', { 'staffs': staffs })
+    return render(request, 'staff.html', { 'staffs': staffs })
 
 
 # update functions

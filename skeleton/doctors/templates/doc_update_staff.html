@@ -1,4 +1,4 @@
-{% extends 'institution.html' %}
+{% extends 'doctors.html' %}
 {% load static %}
 
 {% block content %}
@@ -22,26 +22,38 @@
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="country-floating">Gender</label>
-                    {{ form.gender }}
+                    <label for="country-floating">Email</label>
+                    {{ form.email }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="country-floating">Age</label>
-                    {{ form.age }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="company-column">Date of Birth</label>
+                    <label for="country-floating">Date of Birth</label>
                     {{ form.date_of_birth }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">Gender</label>
+                    {{ form.gender }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="email-id-column">Phone Number</label>
                     {{ form.phone_number }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Department</label>
+                    {{ form.department }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Employee ID</label>
+                    {{ form.employee_id }}
                   </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end">

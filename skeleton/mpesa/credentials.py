@@ -1,28 +1,46 @@
-from requests.auth import HTTPBasicAuth
-from datetime import datetime
-import json
-import requests
+import os
 import base64
-from decouple import config
-class MpesaCredentials:
-    consumer_key = config('MPESA_CONSUMER_KEY')
-    consumer_secret = config('MPESA_CONSUMER_SECRET')
-    api_url = config('MPESA_API_URL')
-
+import requests
+from requests.auth import HTTPBasicAuth
+import datetime
 
 class MpesaAccessToken:
-    r = requests.get(MpesaCredentials.api_url, auth=HTTPBasicAuth(MpesaCredentials.consumer_key, MpesaCredentials.consumer_secret))
-    
-    mpesa_access_token = json.loads(r.text)
-    validate_access_token = mpesa_access_token['access_token']
+    access_token = None
+    token_expiry_time = None
 
+    @staticmethod
+    def get_access_token():
+        consumer_key = os.getenv('MPESA_CONSUMER_KEY')  # Load from environment variable
+        consumer_secret = os.getenv('MPESA_CONSUMER_SECRET')  # Load from environment variable
+        api_url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
 
-class MpesaPassword:
-    time = datetime.now().strftime('%Y%m%d%H%m%S')
-    business_short_code = config('MPESA_BUSINESS_CODE')
-    offsetValue = config('MPESA_OFFSET_VALUE') # 0 
-    passkey = config('MPESA_PASS_KEY') # get passkey 
-    encode_data = business_short_code + passkey + time
-    generated_ppassword = base64.b64encode.encode(encode_data.encode())
-    decode_generated_password = generated_ppassword.decode('utf-8')
+        try:
+            response = requests.get(api_url, auth=HTTPBasicAuth(consumer_key, consumer_secret))
+            response.raise_for_status()  # Raise an error for bad responses
+            json_response = response.json()
+            MpesaAccessToken.access_token = json_response['access_token']
+            MpesaAccessToken.token_expiry_time = datetime.datetime.now() + datetime.timedelta(minutes=59)  # Token is valid for 60 minutes
+            return MpesaAccessToken.access_token
+        except requests.exceptions.RequestException as e:
+            print(f"Error retrieving access token: {e}")
+            return None
+
+    @classmethod
+    def validated_mpesa_access_token(cls):
+        if cls.access_token is None or datetime.datetime.now() >= cls.token_expiry_time:
+            return cls.get_access_token()
+        return cls.access_token
+
+class LipanaMpesaPpassword:
+    Business_short_code = os.getenv('MPESA_BUSINESS_SHORT_CODE')  # Load from environment variable
+    Shortcode_password = os.getenv('MPESA_LIPA_NA_MPESA_ONLINE_PASSWORD')  # Load from environment variable
     
+    @staticmethod
+    def get_lipa_time():
+        return datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+
+    @property
+    def decode_password(self):
+        lipa_time = self.get_lipa_time()
+        password = f"{self.Business_short_code}{self.Shortcode_password}{lipa_time}"
+        return base64.b64encode(password.encode()).decode()

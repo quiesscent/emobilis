@@ -1,4 +1,4 @@
-{% extends 'institution.html' %}
+{% extends 'doctor.html' %}
 {% load static %}
 
 {% block content %}
@@ -8,7 +8,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Add and Update Outpatient Profile</h4>
+          <h4 class="card-title">Add and Update Inpatient Profile</h4>
         </div>
         <div class="card-content">
           <div class="card-body">
@@ -18,6 +18,12 @@
                   <div class="form-group">
                     <label for="first-name-column">Name</label>
                     {{ form.patient }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="last-name-column">Room</label>
+                    {{ form.room_no }}
                   </div>
                 </div>
                 <div class="col-md-12 col-12">
@@ -77,12 +83,18 @@
                 <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="email-id-column">Date Admitted</label>
-                    {{ form.updated_at }}
+                    {{ form.date_addmitted }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Date Discharged</label>
+                    {{ form.date_discharged }}
                   </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                  <a href='' class="btn btn-light-danger me-1 mb-1">Delete</a>
+                  <button type="reset" class="btn btn-light-danger me-1 mb-1">Delete</button>
                 </div>
               </div>
             </form>

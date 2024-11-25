@@ -25,7 +25,7 @@ def updateInPatient(request, pk=None):
         else:
             form = InPatientRecordForm(instance=patient)
         
-    return render(request, 'patient.html', {'form': form})
+    return render(request, 'doc_update_inpatient.html', {'form': form})
 
 
 def updateOutPatient(request, pk=None):
@@ -41,7 +41,7 @@ def updateOutPatient(request, pk=None):
             
         else:
             form = OutPatientRecordForm(instance=patient)
-    return render(request, 'patient.html', {'form': form})
+    return render(request, 'doc_update_outpatient.html', {'form': form})
     
 
 def updatePatient(request, pk):
@@ -62,7 +62,7 @@ def updatePatient(request, pk):
         else:
             form = PatientForm(instance=patient)
             
-    return render(request, 'patient.html', {'form': form})
+    return render(request, 'doc_update_patient.html', {'form': form})
 
 
 def appointments(request):
@@ -79,12 +79,12 @@ def patients(request):
 
 def outPatients(request):
     patients = OutPatientRecord.objects.all().order_by('-id')
-    return render(request, 'patient.html', { 'patients': patients })
+    return render(request, 'outpatient.html', { 'patients': patients })
 
 
 def inPatients(request):
     patients = InPatientRecord.objects.all().order_by('-id')
-    return render(request, 'patient.html', { 'patients': patients })
+    return render(request, 'inpatient.html', { 'patients': patients })
 
 def deleteappointments(request, pk):
     instance = get_object_or_404(Appointment, id=pk)
