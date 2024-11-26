@@ -1,4 +1,4 @@
-{% extends 'patient.html' %}
+{% extends 'patient_base.html' %}
 {% load static %}
 {% block content %}
 <header class="mb-3">
@@ -23,7 +23,7 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Members</h6>
+                  <h6 class="text-muted font-semibold">Hospital Visits</h6>
                   <h6 class="font-extrabold mb-0">112.000</h6>
                 </div>
               </div>
@@ -40,7 +40,7 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Doctors</h6>
+                  <h6 class="text-muted font-semibold">Appointments</h6>
                   <h6 class="font-extrabold mb-0">183.000</h6>
                 </div>
               </div>
@@ -57,7 +57,7 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Sub-Ordinates</h6>
+                  <h6 class="text-muted font-semibold">Doctors</h6>
                   <h6 class="font-extrabold mb-0">80.000</h6>
                 </div>
               </div>
@@ -74,7 +74,7 @@
                   </div>
                 </div>
                 <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Patients</h6>
+                  <h6 class="text-muted font-semibold">Refferals</h6>
                   <h6 class="font-extrabold mb-0">112</h6>
                 </div>
               </div>
@@ -90,18 +90,6 @@
             </div>
             <div class="card-body">
               <div id="chart-profile-visit"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h4>Gender Visits Over Time</h4>
-            </div>
-            <div class="card-body">
-              <div id="area"></div>
             </div>
           </div>
         </div>

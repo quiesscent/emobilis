@@ -11,7 +11,7 @@
           <div class="sidebar-header">
             <div class="d-flex justify-content-between">
               <div class="logo">
-                <a href="">Medi-Institution</a>
+                <a href="">Medi-Patient</a>
               </div>
               <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -23,7 +23,7 @@
             <ul class="menu">
               <li class="sidebar-title">Menu</li>
               <li class="sidebar-item active ">
-                <a href="{% url 'institutions:dashboard' %}" class='sidebar-link'>
+                <a href="{% url 'patients:dashboard' %}" class='sidebar-link'>
                   <i class="bi bi-grid-fill"></i>
                   <span>Dashboard</span>
                 </a>
@@ -35,10 +35,10 @@
                 </a>
                 <ul class="submenu ">
                   <li class="submenu-item ">
-                    <a href="{% url 'institutions:patients' %}">Doctors</a>
+                    <a href="{% url 'patients:doctors' %}">Doctors</a>
                   </li>
                   <li class="submenu-item ">
-                    <a href="{% url 'institutions:inpatients' %}">Institutions</a>
+                    <a href="{% url 'patients:institutions' %}">Institutions</a>
                   </li>
                 </ul>
               </li>
@@ -51,14 +51,11 @@
                 </a>
                 <ul class="submenu ">
                   <li class="submenu-item ">
-                    <a href="">Appointments</a>
-                  </li>
-                  <li class="submenu-item ">
-                    <a href="">Booking Appointment</a>
+                    <a href="{% url  'patients:book_appointment' %}">Booking Appointment</a>
                   </li>
                   
                   <li class="submenu-item ">
-                    <a href="">My Appointments</a>
+                    <a href="{% url 'patients:appointments' %}">My Appointments</a>
                   </li>
                 </ul>
               </li>
