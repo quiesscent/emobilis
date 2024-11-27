@@ -27,7 +27,8 @@ def register(request):
                     email=email,
                     username=username,
                     password=password2,
-                    user_type='patient', 
+                    user_type='patient',
+                    institution='None' 
                 )
             user.save()
         messages.success(request, 'Welcome to MediSphere, Login to Access Dashboard')
@@ -57,7 +58,8 @@ def register_inst(request):
                     email=email,
                     username=username,
                     password=password2,
-                    user_type='institution'
+                    user_type='institution',
+                    institution='None'
                 )
             user.save()
         messages.success(request, 'Welcome to MediSphere, Login to Access Dashboard')
@@ -88,7 +90,7 @@ def register_doc(request):
                     email=email,
                     username=username,
                     password=password2,
-                    user_type='doctor'
+                    user_type='doctor',
                 )
             user.save()
         messages.success(request, 'Welcome to MediSphere, Login to Access Dashboard')

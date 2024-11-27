@@ -37,12 +37,15 @@
                   <li class="submenu-item ">
                     <a href="{% url 'doctors:patients' %}">All Patients</a>
                   </li>
+                  {% if request.user.institution == 'Private' %}
+                  {% else %}
                   <li class="submenu-item ">
                     <a href="{% url 'doctors:inpatients' %}">In-Patients</a>
                   </li>
                   <li class="submenu-item ">
                     <a href="{% url 'doctors:outpatients' %}">Outpatient</a>
                   </li>
+                  {% endif %}
                 </ul>
               </li>
 

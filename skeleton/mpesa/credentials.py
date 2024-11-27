@@ -32,8 +32,8 @@ class MpesaAccessToken:
         return cls.access_token
 
 class LipanaMpesaPpassword:
-    Business_short_code = os.getenv('MPESA_BUSINESS_SHORT_CODE')  # Load from environment variable
-    Shortcode_password = os.getenv('MPESA_LIPA_NA_MPESA_ONLINE_PASSWORD')  # Load from environment variable
+    Business_short_code = os.getenv('MPESA_BUSINESS_CODE')  # Load from environment variable
+    Shortcode_password = os.getenv('MPESA_PASS_KEY')  # Load from environment variable
     
     @staticmethod
     def get_lipa_time():

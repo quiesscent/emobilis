@@ -22,7 +22,7 @@ class CustomUser(AbstractUser):
         verbose_name_plural ='Users'
 
     def __str__(self):
-        return self.email
+        return self.username
 
 class DoctorProfile(models.Model):
     doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

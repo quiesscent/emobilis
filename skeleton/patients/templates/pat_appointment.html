@@ -1,6 +1,104 @@
-{% extends 'patients_base.html' %}
+{% extends 'patient_base.html' %}
 {% load static %}
 
 {% block content %}
+<!-- // Basic multiple Column Form section start -->
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Make Appointment</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form class="form" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="first-name-column">Full Name</label>
+                    {{ form.full_name }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="country-floating">Date of Birth</label>
+                    {{ form.date_of_birth }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">Contact</label>
+                    {{ form.contact_number }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Preferred Appointment Date</label>
+                    {{ form.preferred_appointment_date }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Preferred Time</label>
+                    {{ form.preferred_time }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Preferred Doctor</label>
+                    {{ form.doctor }}
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Reason For Visist</label>
+                    {{ form.reason_for_visit }}
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Visible Sypmtoms</label>
+                    {{ form.symptoms }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact</label>
+                    {{ form.emergency_contact_name }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact Relationship </label>
+                    {{ form.emergency_contact_relationship }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact Number</label>
+                    {{ form.emergency_contact_number  }}
+                  </div>
+                </div>
 
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Representative</label>
+                    {{ form.patient }}
+                  </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary me-1 mb-1">Update</button>
+                  <a href="{% url 'patients:delete' appointment.id %}" class="btn btn-light-danger me-1 mb-1">Delete</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Basic multiple Column Form section end -->
 {% endblock %}

@@ -1,6 +1,51 @@
-{% extends 'patients_base.html' %}
+{% extends 'patient_base.html' %}
 {% load static %}
 
 {% block content %}
-
+<!-- Bordered table start -->
+<section class="section">
+  <div class="row" id="table-bordered">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All Institutions</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+          </div>
+          <!-- table bordered -->
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Employee No.</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone No.</th>
+                  <th>Specialization</th>
+                  <th>Department</th>
+                  <th>Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for institution in institutions %}
+                <tr>
+                  <td class="text-bold-500">{{ institution.username }}</td>
+                  <td>{{ institution.email }}</td>
+                  <td class="text-bold-500">{{ institution.email }}</td>
+                  <td>{{ institution.phone_number }}</td>
+                  <td>{{ institution.specialization }}</td>
+                  <td>{{ institution.department }}</td>
+                  <td class="text-center"><a href="#"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bordered table end -->
 {% endblock %}

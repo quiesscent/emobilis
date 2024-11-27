@@ -85,3 +85,4 @@ class MedicalReport(models.Model):
     def __str__(self):
         return f"Report for {self.patient} by {self.doctor} on {self.report_date}"
 
+

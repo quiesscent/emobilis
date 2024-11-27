@@ -1,6 +1,51 @@
-{% extends 'patients_base.html' %}
+{% extends 'patient_base.html' %}
 {% load static %}
 
 {% block content %}
-
+<!-- Bordered table start -->
+<section class="section">
+  <div class="row" id="table-bordered">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All Appointments</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+          </div>
+          <!-- table bordered -->
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Patient Name</th>
+                  <th>Patient Number</th>
+                  <th>Doctor</th>
+                  <th>Appointment Time</th>
+                  <th>Appoitment Date</th>
+                  <th>Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                  <td class="text-bold-500">{{ appointment.id }}</td>
+                  <td>{{ appointment.full_name }}</td>
+                  <td class="text-bold-500">{{ appointment.contact_number }}</td>
+                  <td>{{ appointment.doctor }}</td>
+                  <td>{{ appointment.preferred_time }}</td>
+                  <td>{{ appointment.preferred_appointment_date }}</td>
+                  <td class="text-center"><a href="{% url 'patients:appointment' appointment.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bordered table end -->
 {% endblock %}
