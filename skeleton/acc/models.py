@@ -32,6 +32,9 @@ class DoctorProfile(models.Model):
     specialization = models.CharField(default='', max_length=20)
     license_no = models.IntegerField()
     profile = models.ImageField(upload_to='doctors/')
+    total_appointments = models.PositiveIntegerField(default=0)
+    total_patients = models.PositiveIntegerField(default=0)
+    total_reports = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f'{self.user.username}'

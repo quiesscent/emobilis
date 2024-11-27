@@ -11,7 +11,7 @@
           <div class="sidebar-header">
             <div class="d-flex justify-content-between">
               <div class="logo">
-                <a href="">Medi-Institution</a>
+                <a href="">Medi-Doctor</a>
               </div>
               <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -34,10 +34,10 @@
                   <span>Patients</span>
                 </a>
                 <ul class="submenu ">
+                  {% if request.user.institution == 'Private' %}
                   <li class="submenu-item ">
                     <a href="{% url 'doctors:patients' %}">All Patients</a>
                   </li>
-                  {% if request.user.institution == 'Private' %}
                   {% else %}
                   <li class="submenu-item ">
                     <a href="{% url 'doctors:inpatients' %}">In-Patients</a>
@@ -57,7 +57,7 @@
                 </a>
                 <ul class="submenu ">
                   <li class="submenu-item ">
-                    <a href="">Appointments</a>
+                    <a href="{% url 'doctors:appointments' %}">Appointments</a>
                   </li>
                   <li class="submenu-item ">
                     <a href="">Pending Appointments</a>

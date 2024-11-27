@@ -4,38 +4,6 @@ from django.utils import timezone
 from acc.models import DoctorProfile, CustomUser, PatientProfile
 # Create your models here.
 
-class Appointment(models.Model):
-    # Patient Information
-    full_name = models.CharField(max_length=100)
-    date_of_birth = models.DateField()
-    contact_number = models.CharField(max_length=15)  # Adjust length for international numbers
-
-    # Appointment Details
-    preferred_appointment_date = models.DateField()
-    preferred_time = models.CharField(
-        max_length=20,
-        choices=[
-            ('Morning', 'Morning'),
-            ('Afternoon', 'Afternoon'),
-            ('Evening', 'Evening')
-        ],
-        default='Morning'
-    )
-    doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
-    reason_for_visit = models.TextField()
-    symptoms = models.TextField(blank=True, null=True)  # Optional field
-    emergency_contact_name = models.CharField(max_length=100)
-    emergency_contact_relationship = models.CharField(max_length=50)
-    emergency_contact_number = models.CharField(max_length=15)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        ordering = ['created_at'] 
-    
-    def __str__(self):
-        return f'{self.full_name} Appointment'
 
 class Patient(models.Model):
     GENDER_CHOICES = [
@@ -43,6 +11,7 @@ class Patient(models.Model):
         ('Female', 'Female'),
         ('Other', 'Other'),
     ]
+    
     
     BLOOD_TYPE_CHOICES = [
         ('A+', 'A+'), ('A-', 'A-'),

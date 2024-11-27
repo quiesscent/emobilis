@@ -1,5 +1,5 @@
 from django import forms
-from .models import Appointment, MedicalReport, Patient
+from .models import MedicalReport, Patient
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -20,19 +20,6 @@ class PatientForm(forms.ModelForm):
             'allergies': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'blood_type': forms.Select(attrs={'class': 'form-control'}),
         }
-
-class AppointmentForm(forms.ModelForm):
-    class Meta:
-        model = Appointment
-        fields = '__all__'
-
-        widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type': 'date',  'class': 'form-control'}),
-            'preferred_appointment_date': forms.DateInput(attrs={'type': 'date',  'class': 'form-control'}),
-            'reason_for_visit': forms.Textarea(attrs={'rows': 3,  'class': 'form-control'}),
-            'symptoms': forms.Textarea(attrs={'rows': 3,  'class': 'form-control'}),
-        }
-
 
 class MedicalReportForm(forms.ModelForm):
     class Meta:
