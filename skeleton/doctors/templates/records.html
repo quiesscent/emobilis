@@ -7,7 +7,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">All In Patients</h4>
+          <h4 class="card-title">All Records</h4>
         </div>
         <div class="card-content">
           <div class="card-body">
@@ -19,25 +19,25 @@
                 <tr>
                   <th>Record ID</th>
                   <th>Patient Name</th>
-                  <th>Sickness</th>
+                  <th>Report Date</th>
                   <th>Diagnosis</th>
-                  <th>Room No.</th>
-                  <th>Assigned Doctor</th>
-                  <th>Dated Admitted</th>
+                  <th>Treatment</th>
+                  <th>Notes</th>
+                  <th>Updated At</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {% for patient in patients %}
+                {% for record in records %}
                 <tr>
-                  <td class="text-bold-500">{{ patient.record_id }}</td>
-                  <td>{{ patient.patient }}</td>
-                  <td class="text-bold-500">{{ patient.sickness }}</td>
-                  <td>{{ patient.diagnosis }}</td>
-                  <td>{{ patient.room_no  }}</td>
-                  <td>{{ patient.assigned_doctor }}</td>
-                  <td>{{ patient.date_addmitted }}</td>
-                  <td class="text-center"><a href="{% url 'doctors:appointment' appointment.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-bold-500">{{ record.id }}</td>
+                  <td>{{ record.patient }}</td>
+                  <td class="text-bold-500">{{ record.report_date }}</td>
+                  <td>{{ record.diagnosis }}</td>
+                  <td>{{ record.treatment  }}</td>
+                  <td>{{ record.notes }}</td>
+                  <td>{{ record.updated_at }}</td>
+                  <td class="text-center"><a href="{% url 'doctors:record' record.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

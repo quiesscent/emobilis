@@ -12,11 +12,16 @@ class DoctorProfileForm(forms.ModelForm):
             'phone_number',
             'specialization',
             'license_no',
-            'department',
             'profile',
         ]
         widgets = {
-            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+            'doctor': forms.Select(attrs={'class': 'form-control'}),
+            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'gender': forms.Select(choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], attrs={'class': 'form-control'}),
+            'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
+            'specialization': forms.TextInput(attrs={'class': 'form-control'}),
+            'license_no': forms.NumberInput(attrs={'class': 'form-control'}),
+            'profile': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
 class PatientProfileForm(forms.ModelForm):

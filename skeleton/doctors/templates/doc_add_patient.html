@@ -8,93 +8,101 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Add and Update Inpatient Profile</h4>
+          <h4 class="card-title">Add and Update Patient Profile</h4>
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form class="form">
+            <form class="form" method="POST">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="first-name-column">Name</label>
-                    {{ form.patient }}
+                    <label for="first-name-column">First Name</label>
+                    {{ form.first_name }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="last-name-column">Room</label>
-                    {{ form.room_no }}
+                    <label for="country-floating">Last Name</label>
+                    {{ form.last_name  }}
                   </div>
                 </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="country-floating">Email</label>
+                    {{ form.email }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">Phone Number</label>
+                    {{ form.phone_number}}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Date of Birth</label>
+                    {{ form.date_of_birth }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Gender</label>
+                    {{ form.gender }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Address</label>
+                    {{ form.address }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Doctor</label>
+                    {{ form.doctor }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact Name</label>
+                    {{ form.emergency_contact_name }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact Phone</label>
+                    {{ form.emergency_contact_phone }}
+                  </div>
+                </div>
+
                 <div class="col-md-12 col-12">
                   <div class="form-group">
-                    <label for="country-floating">Reason For Visit</label>
-                    {{ form.reason_for_visit }}
+                    <label for="email-id-column">Medical History</label>
+                    {{ form.medical_history }}
                   </div>
                 </div>
+
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="company-column">Sickness</label>
-                    {{ form.sickness }}
+                    <label for="email-id-column">Known Allergies</label>
+                    {{ form.allergies }}
                   </div>
                 </div>
+
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="email-id-column">Diagnosis</label>
-                    {{ form.diagnosis }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Medication</label>
-                    {{ form.medication }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Payment Method</label>
-                    {{ form.payment_method }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Assigned Doctor</label>
-                    {{ form.assigned_doctor }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Next Of Kin Name</label>
-                    {{ form.next_of_kin_name }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Next Of Kin Contact</label>
-                    {{ form.next_of_kin_contact }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Next of Kin Address</label>
-                    {{ form.next_of_kin_address }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Date Admitted</label>
-                    {{ form.date_addmitted }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Date Discharged</label>
-                    {{ form.date_discharged }}
+                    <label for="email-id-column">Blood Type</label>
+                    {{ form.blood_type  }}
                   </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                  <a href='' class="btn btn-light-danger me-1 mb-1">Delete</a>>
                 </div>
               </div>
             </form>

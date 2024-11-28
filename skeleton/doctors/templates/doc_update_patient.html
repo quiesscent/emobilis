@@ -1,4 +1,4 @@
-{% extends 'doctors.html' %}
+{% extends 'doctor.html' %}
 {% load static %}
 
 {% block content %}
@@ -12,41 +12,98 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form class="form">
+            <form class="form" method="POST">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="first-name-column">Name</label>
-                    {{ form.name }}
+                    <label for="first-name-column">First Name</label>
+                    {{ form.first_name }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="country-floating">Gender</label>
-                    {{ form.gender }}
+                    <label for="country-floating">Last Name</label>
+                    {{ form.last_name  }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="country-floating">Age</label>
-                    {{ form.age }}
+                    <label for="country-floating">Email</label>
+                    {{ form.email }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="company-column">Date of Birth</label>
+                    <label for="company-column">Phone Number</label>
+                    {{ form.phone_number}}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Date of Birth</label>
                     {{ form.date_of_birth }}
                   </div>
                 </div>
+
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="email-id-column">Phone Number</label>
-                    {{ form.phone_number }}
+                    <label for="email-id-column">Gender</label>
+                    {{ form.gender }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Address</label>
+                    {{ form.address }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Doctor</label>
+                    {{ form.doctor }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact Name</label>
+                    {{ form.emergency_contact_name }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Emergency Contact Phone</label>
+                    {{ form.emergency_contact_phone }}
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Medical History</label>
+                    {{ form.medical_history }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Known Allergies</label>
+                    {{ form.allergies }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Blood Type</label>
+                    {{ form.blood_type  }}
                   </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                  <a href='' class="btn btn-light-danger me-1 mb-1">Delete</a>
+                  <a href="{% url 'doctors:del_patient' patient.id %}" class="btn btn-light-danger me-1 mb-1">Delete</a>
                 </div>
               </div>
             </form>

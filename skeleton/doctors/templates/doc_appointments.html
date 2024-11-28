@@ -36,7 +36,7 @@
                   <td>{{ appointment.doctor }}</td>
                   <td>{{ appointment.preferred_time }}</td>
                   <td>{{ appointment.preferred_appointment_date }}</td>
-                  <td class="text-center"><a href="{% url 'patients:appointment' appointment.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{% url 'doctors:appointment' appointment.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

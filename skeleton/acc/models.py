@@ -37,7 +37,7 @@ class DoctorProfile(models.Model):
     total_reports = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f'{self.user.username}'
+        return f'{self.doctor.username}'
 
 class PatientProfile(models.Model):
     patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE)

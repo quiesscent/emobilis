@@ -1,0 +1,79 @@
+{% extends 'doctor.html' %}
+{% load static %}
+
+{% block content %}
+<!-- // Basic multiple Column Form section start -->
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Update Record</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form class="form" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="first-name-column">Patient Name</label>
+                    {{ form.patient }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="last-name-column">Doctor</label>
+                    {{ form.doctor }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="country-floating">Report Date</label>
+                    {{ form.report_date }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">Diagnosis</label>
+                    {{ form.diagnosis }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Treatment</label>
+                    {{ form.treatment }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Prescription</label>
+                    {{ form.prescription }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Results</label>
+                    {{ form.lab_results }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Notes</label>
+                    {{ form.notes }}
+                  </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary me-1 mb-1">Update</button>
+                  <a href="{% url 'doctors:del_record' record.id %}" class="btn btn-light-danger me-1 mb-1">Delete</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Basic multiple Column Form section end -->
+ {% endblock %}

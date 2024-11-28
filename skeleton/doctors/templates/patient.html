@@ -19,7 +19,6 @@
                 <tr>
                   <th>Patient ID</th>
                   <th>Patient Name</th>
-                  <th>Age</th>
                   <th>Date of Birth</th>
                   <th>Gender</th>
                   <th>Phone No.</th>
@@ -30,13 +29,12 @@
               <tbody>
                 {% for patient in patients %}
                 <tr>
-                  <td class="text-bold-500">{{ patient.patient_id }}</td>
-                  <td>{{ patient.name }}</td>
-                  <td class="text-bold-500">{{ patient.age }}</td>
+                  <td class="text-bold-500">{{ patient.id }}</td>
+                  <td>{{ patient.first_name }} {{ patient.last_name }}</td>
                   <td>{{ patient.date_of_birth }}</td>
                   <td>{{ patient.gender  }}</td>
                   <td>{{ patient.phone_number }}</td>
-                  <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
+                  <td><a href="{% url 'doctors:up_patient' patient.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a><a href="#"></a></td>
                 </tr>
                 {% endfor %}
               </tbody>
