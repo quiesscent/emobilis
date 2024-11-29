@@ -16,6 +16,7 @@ def dashboard(request):
     return render(request, 'pat_index.html')
 
 def profile(request):
+    
     try:
         patient = get_object_or_404(PatientProfile, patient=request.user.id)
     

@@ -109,7 +109,7 @@
                                         {% elif request.user.user_type == 'institution' %}
                                         <a href="{% url 'institutions:dashboard' %}" class="dropdown-item">Dashboard</a>
                                         {% else %}
-                                        <a href="{% url 'doctors:dashboard' %}" class="dropdown-item">Dashboard</a>
+                                        <a href="/admin" class="dropdown-item">Dashboard</a>
                                         {% endif %}
                                     <a href="{% url 'acc:logout' %}" class="dropdown-item">Logout</a>
                                     {% else %}

@@ -37,6 +37,9 @@
                   <li class="submenu-item ">
                     <a href="{% url 'institutions:doctors' %}">All Doctors</a>
                   </li>
+                  <li class="submenu-item ">
+                    <a href="{% url 'institutions:add_d' %}">Add Doctors</a>
+                  </li>
                 </ul>
               </li>
               <li class="sidebar-item  has-sub">
@@ -46,17 +49,25 @@
                 </a>
                 <ul class="submenu ">
                   <li class="submenu-item ">
+                    <a href="{% url 'institutions:add_p' %}">Add Patients</a>
+                  </li>
+                  <li class="submenu-item ">
                     <a href="{% url 'institutions:patients' %}">All Patients</a>
                   </li>
                   <li class="submenu-item ">
+                    <a href="{% url 'institutions:add_in' %}">Add In Patients</a>
+                  </li>
+                  <li class="submenu-item ">
                     <a href="{% url 'institutions:inpatients' %}">In-Patients</a>
+                  </li>
+                  <li class="submenu-item ">
+                    <a href="{% url 'institutions:add_out' %}">Add Outpatient</a>
                   </li>
                   <li class="submenu-item ">
                     <a href="{% url 'institutions:outpatients' %}">Outpatient</a>
                   </li>
                 </ul>
               </li>
-
               <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
                   <i class="bi bi-collection-fill"></i>
@@ -64,12 +75,13 @@
                 </a>
                 <ul class="submenu ">
                   <li class="submenu-item ">
-                    <a href="{% url 'institutions:staff' %}">All Staff</a>
+                    <a href="{% url 'institutions:staffs' %}">All Staff</a>
+                  </li>
+                  <li class="submenu-item ">
+                    <a href="{% url 'institutions:add_s' %}">Add Staff</a>
                   </li>
                 </ul>
               </li>
-
-
               <li class="sidebar-title">Tasks</li>
               <li class="sidebar-item  has-sub">
                 <a href="#" class='sidebar-link'>
@@ -96,9 +108,15 @@
                 </a>
               </li>
               <li class="sidebar-item  ">
-                <a href="" class='sidebar-link'>
-                  <i class="bi bi-chat-dots-fill"></i>
+                <a href="{% url 'doctors:profile' %}" class='sidebar-link'>
+                  <i class='bx bxs-user-circle fs-5'></i>
                   <span>Profile</span>
+                </a>
+              </li>
+              <li class="sidebar-item  ">
+                <a href="{% url 'acc:logout' %}" class='sidebar-link'>
+                  <i class='bx bxs-log-out-circle fs-5' ></i>
+                  <span>Logout</span>
                 </a>
               </li>
             </ul>

@@ -1,0 +1,102 @@
+{% extends 'institution.html' %}
+{% load static %}
+
+{% block content %}
+<!-- // Basic multiple Column Form section start -->
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Add Outpatient Profile</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form class="form" method="POST">
+              {% csrf_token %}
+              <div class="row">
+                 <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Record ID</label>
+                    {{ form.record_id }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="first-name-column">Name</label>
+                    {{ form.patient }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="country-floating">Reason For Visit</label>
+                    {{ form.reason_for_visit }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">Sickness</label>
+                    {{ form.sickness }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Diagnosis</label>
+                    {{ form.diagnosis }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Medication</label>
+                    {{ form.medication }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Payment Method</label>
+                    {{ form.payment_method }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Assigned Doctor</label>
+                    {{ form.assigned_doctor }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Next Of Kin Name</label>
+                    {{ form.next_of_kin_name }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Next Of Kin Contact</label>
+                    {{ form.next_of_kin_contact }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Next of Kin Address</label>
+                    {{ form.next_of_kin_address }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Updated At</label>
+                    {{ form.updated_at }}
+                  </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Basic multiple Column Form section end -->
+ {% endblock %}

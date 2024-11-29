@@ -7,10 +7,8 @@ class DoctorForm(forms.ModelForm):
         fields = '__all__'  # Includes all fields in the model
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'employee_id': forms.NumberInput(attrs={'class': 'form-control'}),
+            'employee_id': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'password': forms.TextInput(attrs={'class': 'form-control'}),
-            'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'type': 'date'}),
             'gender': forms.TextInput(attrs={'class': 'form-control'}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
             'specialization': forms.TextInput(attrs={'class': 'form-control'}),
@@ -43,6 +41,7 @@ class PatientForm(forms.ModelForm):
             'age': forms.NumberInput(attrs={'class': 'form-control'}),
             'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
+            'patient_id': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class InPatientRecordForm(forms.ModelForm):
@@ -60,8 +59,10 @@ class InPatientRecordForm(forms.ModelForm):
             'assigned_doctor': forms.Select(attrs={'class': 'form-control'}),
             'next_of_kin_name': forms.TextInput(attrs={'class': 'form-control'}),
             'next_of_kin_contact': forms.NumberInput(attrs={'class': 'form-control'}),
-            'next_of_kin_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'record_id': forms.NumberInput(attrs={'class': 'form-control'}),
+            'next_of_kin_address': forms.NumberInput(attrs={'class': 'form-control'}),
             'date_addmitted': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'updated_at': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'date_discharged': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
         }
 
@@ -80,6 +81,8 @@ class OutPatientRecordForm(forms.ModelForm):
             'next_of_kin_name': forms.TextInput(attrs={'class': 'form-control'}),
             'patient': forms.Select(attrs={'class': 'form-control'}),
             'next_of_kin_contact': forms.NumberInput(attrs={'class': 'form-control'}),
-            'next_of_kin_address': forms.TextInput(attrs={'class': 'form-control'}),
+            'next_of_kin_address': forms.NumberInput(attrs={'class': 'form-control'}),
             'payment_method': forms.TextInput(attrs={'class': 'form-control'}),
+            'record_id': forms.NumberInput(attrs={'class': 'form-control'}),
+            'updated_at': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
         }

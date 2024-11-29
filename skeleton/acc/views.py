@@ -59,7 +59,7 @@ def register_inst(request):
                     username=username,
                     password=password2,
                     user_type='institution',
-                    institution='None'
+                    institution=username,
                 )
             user.save()
         messages.success(request, 'Welcome to MediSphere, Login to Access Dashboard')
@@ -116,6 +116,8 @@ def login_(request):
 
             elif user.user_type == 'institution':
                 return redirect('institutions:dashboard')
+            else:
+                return redirect('core:home')
         else:
             messages.error(request, 'Invalid email or password. Contact Institution or Register')
 

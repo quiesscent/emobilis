@@ -8,12 +8,21 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Add and Update Inpatient Profile</h4>
+          <h4 class="card-title">Add Inpatient Profile</h4>
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form class="form">
+            <form class="form" method="POST">
+              {% csrf_token %}
               <div class="row">
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Record ID</label>
+                    {{ form.record_id }}
+                    {{ form.errors }}
+                  </div>
+                </div>
+
                 <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="first-name-column">Name</label>
@@ -26,7 +35,13 @@
                     {{ form.room_no }}
                   </div>
                 </div>
-                <div class="col-md-12 col-12">
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Payment Method</label>
+                    {{ form.payment_method }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
                   <div class="form-group">
                     <label for="country-floating">Reason For Visit</label>
                     {{ form.reason_for_visit }}
@@ -48,12 +63,6 @@
                   <div class="form-group">
                     <label for="email-id-column">Medication</label>
                     {{ form.medication }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="email-id-column">Payment Method</label>
-                    {{ form.payment_method }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -92,9 +101,14 @@
                     {{ form.date_discharged }}
                   </div>
                 </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Updated At</label>
+                    {{ form.updated_at }}
+                  </div>
+                </div>
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                  <button type="reset" class="btn btn-light-danger me-1 mb-1">Delete</button>
                 </div>
               </div>
             </form>

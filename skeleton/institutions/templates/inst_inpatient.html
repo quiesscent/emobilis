@@ -37,7 +37,7 @@
                   <td>{{ patient.room_no  }}</td>
                   <td>{{ patient.assigned_doctor }}</td>
                   <td>{{ patient.date_addmitted }}</td>
-                  <td class="text-center"><a href="#"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{% url 'institutions:inpatient' patient.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

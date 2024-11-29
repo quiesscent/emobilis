@@ -7,6 +7,6 @@ register = template.Library()
 @register.filter(name='custom_slugify')
 def custom_slugify(value):
     # Replace double quotes with a custom string
-    value = value.replace('\'', '_')
+    value = value.replace('\'', '_').replace('.', '+')
     # Then slugify the name
     return slugify(value)

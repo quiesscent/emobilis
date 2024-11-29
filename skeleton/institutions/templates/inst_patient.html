@@ -1,5 +1,5 @@
 {% extends 'institution.html' %}
-
+{% load custom_filters %}
 {% block content %}
 <!-- Bordered table start -->
 <section class="section">
@@ -36,7 +36,7 @@
                   <td>{{ patient.date_of_birth }}</td>
                   <td>{{ patient.gender  }}</td>
                   <td>{{ patient.phone_number }}</td>
-                  <td class="text-center"><a href="#"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{% url 'institutions:patient' patient.name|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

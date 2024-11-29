@@ -8,11 +8,12 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Add and Update Patient Profile</h4>
+          <h4 class="card-title">Add and Update Doctor Profile</h4>
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form class="form">
+            <form class="form" method="POST">
+              {% csrf_token %}
               <div class="row">
                 <div class="col-md-6 col-12">
                   <div class="form-group">
@@ -22,20 +23,14 @@
                 </div>
                 <div class="col-md-6 col-12">
                   <div class="form-group">
-                    <label for="country-floating">Gender</label>
+                    <label for="last-name-column">Email</label>
+                    {{ form.email }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">Gender</label>
                     {{ form.gender }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="country-floating">Age</label>
-                    {{ form.age }}
-                  </div>
-                </div>
-                <div class="col-md-6 col-12">
-                  <div class="form-group">
-                    <label for="company-column">Date of Birth</label>
-                    {{ form.date_of_birth }}
                   </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -44,9 +39,28 @@
                     {{ form.phone_number }}
                   </div>
                 </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Specialization</label>
+                    {{ form.specialization }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Department</label>
+                    {{ form.department }}
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Employee ID</label>
+                    {{ form.employee_id }}
+                  </div>
+                </div>
                 <div class="col-12 d-flex justify-content-end">
                   <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                  <a href='' class="btn btn-light-danger me-1 mb-1">Delete</a>
+                  <a href="{% url 'institutions:delete_d' doctor.id %}" class="btn btn-light-danger me-1 mb-1">Delete</a>
                 </div>
               </div>
             </form>
