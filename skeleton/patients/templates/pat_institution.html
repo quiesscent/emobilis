@@ -3,5 +3,90 @@
 {% load static %}
 
 {% block content %}
-
+<section id="multiple-column-form">
+  <div class="row match-height">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Profile Information</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <form class="form">
+              <div class="row">
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="first-name-column">Institution Name</label>
+                    {{ form.institution }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="last-name-column">Registration Number</label>
+                    {{ form.registration_number }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="city-column">Address</label>
+                    {{ form.address }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="country-floating">City Located</label>
+                    {{ form.city }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="company-column">State Found</label>
+                    {{ form.state }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Country Located</label>
+                    {{ form.country }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Hospital Phone Number</label>
+                    {{ form.phone_number }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Hospital Email</label>
+                    {{ form.email }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Website Link</label>
+                    {{ form.website }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Date Established Date</label>
+                    {{ form.established_date }}
+                  </div>
+                </div>
+                <div class="col-md-6 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">License No</label>
+                    {{ form.description }}
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Basic multiple Column Form section end -->
 {% endblock %}

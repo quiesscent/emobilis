@@ -49,8 +49,31 @@ class PatientProfile(models.Model):
     emergency_contact_name = models.CharField(default='', max_length=20)
     emergency_contact_number = models.IntegerField(default='')
     profile = models.ImageField(upload_to='patients/')
-
+    # total_appointments = models.PositiveIntegerField(default=0)
+    # total_doctors = models.PositiveIntegerField(default=0)
+    # total_profile_visits = models.PositiveIntegerField(default=0)
+    
     def __str__(self):
         return f'{self.patient.username}'
 
-    
+class InstitutionProfile(models.Model):
+    institution = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    registration_number = models.CharField(max_length=100, unique=True)  # Unique ID for institution
+    address = models.TextField()
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField(unique=True)
+    website = models.URLField(blank=True, null=True)
+    established_date = models.DateField()
+    total_doctors = models.PositiveIntegerField(default=0)  # Track the count of doctors
+    total_patients = models.PositiveIntegerField(default=0)  # Track the count of patients
+    description = models.TextField(blank=True, null=True)
+
+    # Audit Fields
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.institution

@@ -1,4 +1,5 @@
 {% extends 'patient_base.html' %}
+{% load filters %}
 {% load static %}
 
 {% block content %}
@@ -38,7 +39,7 @@
                   <td>{{ doctor.specialization }}</td>
                   <td>{{ doctor.department }}</td>
                   <td>{{ doctor.institution }}</td>
-                  <td class="text-center"><a href="#"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{{ doctor.username | custom_slugify }}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -85,7 +86,7 @@
                   <td>{{ doctor.phone_number }}</td>
                   <td>{{ doctor.specialization }}</td>
                   <td>{{ doctor.department }}</td>
-                  <td class="text-center"><a href="#"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{% url 'patients:doctor' doctor.username|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

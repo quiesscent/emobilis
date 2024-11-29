@@ -1,5 +1,5 @@
 from django.db import models
-from acc.models import CustomUser
+from acc.models import CustomUser, DoctorProfile
 
 
 # Create your models here.
@@ -20,7 +20,7 @@ class patientAppointment(models.Model):
         ],
         default='Morning'
     )
-    doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE, limit_choices_to={'user_type': 'doctor'})
+    doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
     reason_for_visit = models.TextField()
     symptoms = models.TextField(blank=True, null=True)  # Optional field
     emergency_contact_name = models.CharField(max_length=100)

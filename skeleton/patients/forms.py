@@ -20,6 +20,5 @@ class PatientAppointmentForm(forms.ModelForm):
             'symptoms': forms.Textarea(attrs={'class': 'form-control'}),
             'emergency_contact_name': forms.TextInput(attrs={'class': 'form-control'}),
             'emergency_contact_relationship': forms.TextInput(attrs={'class': 'form-control'}),
-            'emergency_contact_number': forms.TextInput(attrs={'class': 'form-control'}),
-            
+            'emergency_contact_number': forms.TextInput(attrs={'class': 'form-control'}), 
         }

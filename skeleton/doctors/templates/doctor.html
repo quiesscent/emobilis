@@ -99,8 +99,14 @@
               </li>
               <li class="sidebar-item  ">
                 <a href="{% url 'doctors:profile' %}" class='sidebar-link'>
-                  <i class="bi bi-chat-dots-fill"></i>
+                  <i class='bx bxs-user-circle fs-5'></i>
                   <span>Profile</span>
+                </a>
+              </li>
+              <li class="sidebar-item  ">
+                <a href="{% url 'acc:logout' %}" class='sidebar-link'>
+                  <i class='bx bxs-log-out-circle fs-5' ></i>
+                  <span>Logout</span>
                 </a>
               </li>
             </ul>

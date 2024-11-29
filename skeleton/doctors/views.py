@@ -4,7 +4,7 @@ from institutions.models import InPatientRecord, OutPatientRecord
 from institutions.forms import InPatientRecordForm, OutPatientRecordForm
 from .forms import PatientForm, MedicalReportForm
 from .models import Patient, MedicalReport
-from acc.models import DoctorProfile
+from acc.models import DoctorProfile, CustomUser
 from patients.models import patientAppointment
 from acc.forms import DoctorProfileForm
 from patients.forms import PatientAppointmentForm
@@ -12,11 +12,13 @@ from patients.forms import PatientAppointmentForm
 
 def dashboard(request):
     profile = get_object_or_404(DoctorProfile, doctor=request.user.id)
+    doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
+    appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
     
     context = {
-        'profile': profile
+        'profile': profile,
+        'appointments': appointments,
     }
-    print(profile)
     return render(request, 'doc_dash.html', context)
 
 def profile(request):
@@ -30,7 +32,7 @@ def profile(request):
     else:
         form = DoctorProfileForm(instance=doctor)
 
-    return render(request, 'doc_profile.html', {'form': form})
+    return render(request, 'doc_profile.html', {'form': form, 'profile': doctor})
 
 def updateInPatient(request, pk=None):
     if pk:
@@ -101,7 +103,9 @@ def patient(request, pk=None):
     return render(request, 'doc_update_patient.html', context)
 
 def appointments(request):
-    appointments = patientAppointment.objects.filter(doctor=request.user.id).order_by('-id')
+    
+    doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
+    appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
     context = {
         'appointments':appointments
     }

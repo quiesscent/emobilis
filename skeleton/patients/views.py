@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib import messages
-from acc.models import CustomUser
+from acc.models import CustomUser, DoctorProfile, PatientProfile, InstitutionProfile
+from acc.forms import DoctorProfileForm, InstitutionProfileForm, PatientProfileForm
 from .models import patientAppointment
 from .forms import PatientAppointmentForm
 from institutions.models import Doctor
@@ -9,29 +10,50 @@ from institutions.models import Doctor
 # Create your views here.
 
 def dashboard(request):
-
+    
+    patient = get_object_or_404(PatientProfile, patient=request.user.id)
+    
     return render(request, 'pat_index.html')
 
 def profile(request):
+    try:
+        patient = get_object_or_404(PatientProfile, patient=request.user.id)
     
-    appointment = get_object_or_404(patientAppointment, id=request.user.id)
-
-    if request.method == "POST":
-        form = PatientAppointmentForm(request.POST, instance=appointment)
+    except:
+        patient = None
+        
+    if request.method == 'POST':
+        form = PatientProfileForm(request.POST, request.FILES, instance=patient)
         if form.is_valid():
             form.save()
-            messages.success(request, 'System change Success')
-            
+            messages.success(request, 'Profile Updated Successful')
+            return redirect('patients:profile')  # Change 'success_url' to your desired success URL
     else:
-        form = PatientAppointmentForm(instance=appointment)
         
-    context = {
-        'form': form,
-        'appointment': appointment
-    }
+        form = PatientProfileForm(instance=patient)
+        form.fields['patient'].initial = request.user.username
+        
+
+    return render(request, 'pat_profile.html', {'form': form, 'profile': patient})
+
     
 def doctor(request, name):
-    pass
+    name = name.replace('-', ' ').replace("_", ".")
+    
+    doctor = get_object_or_404(CustomUser, username__iexact=name)
+    try:
+        profile = get_object_or_404(DoctorProfile, doctor=doctor)
+        form = DoctorProfileForm(instance=profile)
+        return render(request, 'pat_doctor.html', {'form': form})
+    
+    except:
+        messages.error(request, 'Doctor has no profile')
+        return redirect('patients:doctors')
+        
+    return render(request, 'pat_doctors.html')
+    
+        
+    
 
 def doctors(request):
     private_doctors = CustomUser.objects.filter(institution='Private')
@@ -56,13 +78,19 @@ def institutions(request):
 
 
 def institution(request, name):
-    name = name.replace('-', ' ').replace('_', '\'')
-    institution = get_object_or_404(CustomUser, username__iexact='name')
-    context = {
-        'institution': institution        
-    }
+    name = name.replace('-', ' ').replace("_", ".")
     
-    return render(request, 'pat_institution.html', context)
+    institution = get_object_or_404(CustomUser, username__iexact=name)
+    try:
+        profile = get_object_or_404(InstitutionProfile, institution=institution)
+        form = InstitutionProfileForm(instance=profile)
+        return render(request, 'pat_instituions.html', {'form': form})
+    
+    except:
+        messages.error(request, 'Institutions has no profile')
+        return redirect('patients:institutions')
+    
+    return render(request, 'pat_institutions.html')
 
 def appointments(request):
     appointments = patientAppointment.objects.filter(patient=request.user.username)

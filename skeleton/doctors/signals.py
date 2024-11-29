@@ -2,8 +2,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from patients.models import patientAppointment
 from .models import Patient, MedicalReport
-from acc.models import CustomUser, DoctorProfile
-from django.shortcuts import get_object_or_404
+
 @receiver(post_save, sender=patientAppointment)
 def increment_appointment_count(sender, instance, created, **kwargs):
     if created:  # Only increment if a new appointment is created
