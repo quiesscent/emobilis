@@ -36,7 +36,7 @@ def profile(request):
 
 # view data
 def doctors(request):
-    doctors = CustomUser.objects.filter(institution=request.user.username).order_by('-id')
+    doctors = CustomUser.objects.filter(institution=request.user.username).exclude(user_type='institution').order_by('-id')
     return render(request, 'inst_doctor.html', { 'doctors': doctors })
 
 def patients(request):
@@ -80,7 +80,7 @@ def addDoctor(request):
         if form.is_valid():
             # get the cleaned data and create a user
             doc = CustomUser.objects.create_user(username=form.cleaned_data['name'], password=form.cleaned_data['email'], email=form.cleaned_data['email'], user_type='doctor', institution=request.user.username)
-            profile = InstitutionDoctorProfile.objects.create(doctor=form.cleaned_data['name'], email=form.cleaned_data['email'], employee_id=form.cleaned_data['employee_id'], department=form.cleaned_data['department'], specialization=form.cleaned_data['specialization'])
+            profile = InstitutionDoctorProfile.objects.create(doctor=form.cleaned_data['name'], email=form.cleaned_data['email'], employee_id=form.cleaned_data['employee_id'], department=form.cleaned_data['department'], specialization=form.cleaned_data['specialization'], institution=request.user.username)
             doc.save()
             profile.save()
             form.save()

@@ -17,11 +17,11 @@ def dashboard(request):
     else:
         doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
         
-    appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
+    # appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
     
     context = {
         'profile': doc,
-        'appointments': appointments,
+        # 'appointments': appointments,
     }
     return render(request, 'doc_dash.html', context)
 
@@ -38,7 +38,7 @@ def profile(request):
         else:
             form = InstitutionDoctorProfileForm(instance=doctor)
 
-        return render(request, 'doc_profile.html', {'form': form, 'profile': doctor})
+        return render(request, 'inst_doc_profile.html', {'form': form, 'profile': doctor})
     
     else:
         

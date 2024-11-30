@@ -35,7 +35,7 @@
                   <td>{{ staff.phone_number }}</td>
                   <td>{{ staff.position }}</td>
                   <td>{{ staff.department }}</td>
-                  <td class="text-center"><a href="{% url 'institutions:staff' staff.name|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>td>
+                  <td class="text-center"><a href="{% url 'institutions:staff' staff.name|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

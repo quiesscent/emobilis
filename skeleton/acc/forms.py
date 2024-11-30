@@ -87,14 +87,11 @@ class InstitutionProfileForm(forms.ModelForm):
 class InstitutionDoctorProfileForm(forms.ModelForm):
     class Meta:
         model = InstitutionDoctorProfile
-        fields = [
-            'doctor', 'institution', 'employee_id', 'email', 'date_of_birth', 'gender',
-            'phone_number', 'specialization', 'department',
-        ]
+        fields = '__all__'
         widgets = {
             'doctor': forms.TextInput(attrs={'class': 'form-control'}),
-            'institution': forms.TextInput(attrs={'class': 'form-control'}),
-            'employee_id': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'employee_id': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'gender': forms.TextInput(attrs={'class': 'form-control'}),
