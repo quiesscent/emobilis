@@ -7,3 +7,4 @@ class DoctorsConfig(AppConfig):
     
     def ready(self):
         import doctors.signals
+        

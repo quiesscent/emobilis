@@ -1,37 +1,58 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Patient, Doctor, InPatientRecord, OutPatientRecord, Staff
 from datetime import datetime
-from acc.models import CustomUser
+from acc.models import CustomUser, InstitutionProfile, InstitutionDoctorProfile
 from django.contrib import messages
+from acc.forms import InstitutionProfileForm
 from .forms import DoctorForm, PatientForm, OutPatientRecordForm, InPatientRecordForm, StaffForm
 from .identifications import *
 # Create your views here.
 
 def index(request):
-    
-    return render(request, 'inst_dash.html')
 
+    profile = get_object_or_404(InstitutionProfile, institution=request.user.username)
+        
+    context = {
+        'profile':profile
+    }
+    return render(request, 'inst_dash.html', context)
+
+def profile(request):
+    try:
+        institution = get_object_or_404(InstitutionProfile, institution=request.user.username)
+    except:
+        institution = None
+        
+    if request.method == 'POST':
+        form = InstitutionProfileForm(request.POST, request.FILES, instance=institution)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile Updated Successful')
+            return redirect('institutions:profile')  # Change 'success_url' to your desired success URL
+    else:
+        form = InstitutionProfileForm(instance=institution, initial={'institution': request.user.username, 'email': request.user.email})
+     
+    return render(request, 'inst_profile.html', {'form':form, 'profile': institution}, )
 
 # view data
 def doctors(request):
-    doctors = Doctor.objects.all().order_by('-id')
+    doctors = CustomUser.objects.filter(institution=request.user.username).order_by('-id')
     return render(request, 'inst_doctor.html', { 'doctors': doctors })
 
 def patients(request):
-    patients = Patient.objects.all().order_by('-id')
+    patients = Patient.objects.filter(institution=request.user.username).order_by('-id')
     return render(request, 'inst_patient.html', { 'patients': patients })
 
-
 def outPatients(request):
-    patients = OutPatientRecord.objects.all().order_by('-id')
+    patients = OutPatientRecord.objects.filter(institution=request.user.username).order_by('-id')
     return render(request, 'inst_outpatient.html', { 'patients': patients })
 
 def inPatients(request):
-    patients = InPatientRecord.objects.all().order_by('-id')
+    patients = InPatientRecord.objects.filter(institution=request.user.username).order_by('-id')
     return render(request, 'inst_inpatient.html', { 'patients': patients })
 
 def staffs(request):
-    staffs = Staff.objects.all().order_by('-id')
+    staffs = Staff.objects.filter(institution=request.user.username).order_by('-id')
     return render(request, 'staff.html', { 'staffs': staffs })
 # end view
 
@@ -48,7 +69,7 @@ def addPatient(request):
             print('invalid form')
     else:
         
-        form = PatientForm(initial={'patient_id': patient_id}) 
+        form = PatientForm(initial={'patient_id': patient_id, 'institution': request.user.username }) 
         
     return render(request, 'add_patient.html', {'form': form })
 
@@ -59,14 +80,16 @@ def addDoctor(request):
         if form.is_valid():
             # get the cleaned data and create a user
             doc = CustomUser.objects.create_user(username=form.cleaned_data['name'], password=form.cleaned_data['email'], email=form.cleaned_data['email'], user_type='doctor', institution=request.user.username)
+            profile = InstitutionDoctorProfile.objects.create(doctor=form.cleaned_data['name'], email=form.cleaned_data['email'], employee_id=form.cleaned_data['employee_id'], department=form.cleaned_data['department'], specialization=form.cleaned_data['specialization'])
             doc.save()
+            profile.save()
             form.save()
             messages.success(request, 'System change Success')
             return redirect("institutions:doctors")
         else:
             print('invalid form')
     else:
-        form = DoctorForm(initial={'employee_id': employee_id})
+        form = DoctorForm(initial={'employee_id': employee_id, 'institution': request.user.username })
         
     return render(request, 'add_doctor.html', {'form':form})
 
@@ -82,7 +105,7 @@ def addStaff(request):
         else:
             print('invalid form')
     else:
-        form = StaffForm(initial={'employee_id': employee_id})   
+        form = StaffForm(initial={'employee_id': employee_id, 'institution': request.user.username})   
     
     return render(request, 'add_staff.html', {'form': form})
 
@@ -98,7 +121,7 @@ def addInpatient(request):
         else:
             print('invalid form')
     else:
-        form = InPatientRecordForm(initial={'record_id': record_id}) 
+        form = InPatientRecordForm(initial={'record_id': record_id, 'institution': request.user.username}) 
         
     return render(request, 'add_inpatient.html', {'form': form })
 
@@ -114,7 +137,7 @@ def addOutpatient(request, pk=None):
         else:
             print('invalid form')
     else:
-        form = OutPatientRecordForm(initial={'record_id': record_id}) 
+        form = OutPatientRecordForm(initial={'record_id': record_id, 'institution': request.user.username}) 
         
     return render(request, 'add_outpatient.html',{'form': form})
 
@@ -228,14 +251,14 @@ def deleteStaff(request, pk):
     messages.success(request, 'Record Deleted Successfuly')
 
 def deleteDoctor(request, pk):
-    instance = get_object_or_404(Doctor, employee_id=pk)
+    instance = get_object_or_404(Doctor, id=pk)
     acc_instance = get_object_or_404(CustomUser, email=instance.email)
     instance.delete()
-    
     #delete access to login
     acc_instance.delete()
     
     messages.success(request, 'Record Deleted Successfuly')
+    return redirect('institutions:doctors')
 
 def deleteInpatient(request, pk):
     instance = get_object_or_404(InPatientRecord, record_id=pk)

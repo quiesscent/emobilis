@@ -1,5 +1,5 @@
 from django import forms
-from .models import DoctorProfile, CustomUser, PatientProfile, InstitutionProfile
+from .models import DoctorProfile, CustomUser, PatientProfile, InstitutionProfile, InstitutionDoctorProfile
 
 
 class DoctorProfileForm(forms.ModelForm):
@@ -56,10 +56,22 @@ class PatientProfileForm(forms.ModelForm):
 class InstitutionProfileForm(forms.ModelForm):
     class Meta:
         model = InstitutionProfile
-        fields = '__all__'
+        fields = [
+            'institution',
+            'registration_number',
+            'address',
+            'city',
+            'state',
+            'country',
+            'phone_number',
+            'email',
+            'website',
+            'established_date',
+            'description'
+        ]
         
         widgets = {
-            'institution': forms.Select(attrs={'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
             'registration_number': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 1}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
@@ -70,4 +82,23 @@ class InstitutionProfileForm(forms.ModelForm):
             'website': forms.URLInput(attrs={'class': 'form-control'}),
             'established_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'description': forms.Textarea(attrs={'rows': 8, 'class': 'form-control', 'rows': 4}),
+        }
+
+class InstitutionDoctorProfileForm(forms.ModelForm):
+    class Meta:
+        model = InstitutionDoctorProfile
+        fields = [
+            'doctor', 'institution', 'employee_id', 'email', 'date_of_birth', 'gender',
+            'phone_number', 'specialization', 'department',
+        ]
+        widgets = {
+            'doctor': forms.TextInput(attrs={'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
+            'employee_id': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'gender': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
+            'specialization': forms.TextInput(attrs={'class': 'form-control'}),
+            'department': forms.TextInput(attrs={'class': 'form-control'}),
         }

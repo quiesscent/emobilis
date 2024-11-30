@@ -8,6 +8,7 @@ urlpatterns = [
     path('staff/', views.staffs, name='staffs'),
     path('inpat/', views.inPatients, name='inpatients'),
     path('outpat/', views.outPatients, name='outpatients'),
+    path('profile/', views.profile, name='profile'),
     
     # add urls
     path('add_p/', views.addPatient, name='add_p'),
@@ -24,11 +25,11 @@ urlpatterns = [
     path('view_in/<int:pk>', views.inPatient, name='inpatient'),
     
     # delete urls
-    path('delete_s/<str:pk>', views.deletePatient, name='delete_p'),
-    path('delete_p/<str:pk>', views.deleteDoctor, name='delete_d'),
-    path('delete_d/<str:pk>', views.deleteStaff, name='delete_s'),
+    path('delete_s/<int:pk>', views.deletePatient, name='delete_p'),
+    path('delete_d/<int:pk>', views.deleteDoctor, name='delete_d'),
+    path('delete_d/<int:pk>', views.deleteStaff, name='delete_s'),
     path('delete_in/<int:pk>', views.deleteInpatient, name='delete_in'),
     path('delete_out/<int:pk>', views.deleteOutpatient, name='delete_out'),
     
-
+    
 ]

@@ -12,6 +12,8 @@ class Doctor(models.Model):
     phone_number = models.IntegerField()
     specialization = models.CharField(default='', max_length=20)
     department = models.CharField(default='', max_length=20)
+    institution = models.CharField(default='', max_length=200)
+    
 
     def __str__(self):
         return f'{self.name }'
@@ -25,7 +27,7 @@ class Staff(models.Model):
     phone_number = models.IntegerField()
     position = models.CharField(default='', max_length=200)
     department = models.CharField(default='', max_length=200)
-
+    institution = models.CharField(default='', max_length=200)
     def __str__(self):
         return f'{self.name} Staff Profile'
         
@@ -36,6 +38,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(default='', max_length=10)
     phone_number = models.IntegerField()
+    institution = models.CharField(default='', max_length=200)
 
     def __str__(self):
         return f'{self.name}'
@@ -56,6 +59,7 @@ class InPatientRecord(models.Model):
     date_addmitted = models.DateTimeField()
     date_discharged = models.DateTimeField()
     updated_at = models.DateTimeField(default=timezone.now)
+    institution = models.CharField(default='', max_length=200)
 
 
     def __str__(self):
@@ -74,6 +78,7 @@ class OutPatientRecord(models.Model):
     next_of_kin_contact = models.IntegerField()
     next_of_kin_address = models.IntegerField()
     updated_at = models.DateTimeField(default=timezone.now)
+    institution = models.CharField(default='', max_length=200)
 
     def __str__(self):
         return f'{self.name}'
@@ -102,7 +107,7 @@ class doctorAppointment(models.Model):
     emergency_contact_name = models.CharField(max_length=100)
     emergency_contact_relationship = models.CharField(max_length=50)
     emergency_contact_number = models.CharField(max_length=15)
-
+    institution = models.CharField(default='', max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     

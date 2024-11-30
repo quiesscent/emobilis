@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from .models import CustomUser
+from .models import CustomUser, InstitutionProfile, InstitutionDoctorProfile
 # Create your views here.
 
 # patient register
@@ -62,6 +62,9 @@ def register_inst(request):
                     institution=username,
                 )
             user.save()
+            profile = InstitutionProfile.objects.create(institution=username, email=email)
+            profile.save()
+            
         messages.success(request, 'Welcome to MediSphere, Login to Access Dashboard')
         return redirect('acc:login')
 

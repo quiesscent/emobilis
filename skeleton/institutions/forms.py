@@ -13,7 +13,10 @@ class DoctorForm(forms.ModelForm):
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
             'specialization': forms.TextInput(attrs={'class': 'form-control'}),
             'department': forms.TextInput(attrs={'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
 
 class StaffForm(forms.ModelForm):
     class Meta:
@@ -21,6 +24,7 @@ class StaffForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
             'gender': forms.TextInput(attrs={'class': 'form-control'}),
             'employee_id': forms.TextInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -29,6 +33,7 @@ class StaffForm(forms.ModelForm):
             'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class':'form-control'}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -42,6 +47,7 @@ class PatientForm(forms.ModelForm):
             'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
             'patient_id': forms.TextInput(attrs={'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 class InPatientRecordForm(forms.ModelForm):
@@ -50,6 +56,7 @@ class InPatientRecordForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'patient': forms.Select(attrs={'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
             'reason_for_visit': forms.Textarea(attrs={'class': 'form-control'}),
             'sickness': forms.Textarea(attrs={'rows': '5', 'class': 'form-control'}),
             'diagnosis': forms.Textarea(attrs={'rows': '5','class': 'form-control'}),
@@ -67,13 +74,14 @@ class InPatientRecordForm(forms.ModelForm):
         }
 
 
+
 class OutPatientRecordForm(forms.ModelForm):
     class Meta:
         model = OutPatientRecord
         fields = '__all__'
         widgets = {
-            
             'reason_for_visit': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
+            'institution': forms.TextInput(attrs={'class': 'form-control'}),
             'sickness': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
             'diagnosis': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
             'medication': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),

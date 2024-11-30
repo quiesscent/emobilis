@@ -4,35 +4,55 @@ from institutions.models import InPatientRecord, OutPatientRecord
 from institutions.forms import InPatientRecordForm, OutPatientRecordForm
 from .forms import PatientForm, MedicalReportForm
 from .models import Patient, MedicalReport
-from acc.models import DoctorProfile, CustomUser
+from acc.models import DoctorProfile, CustomUser, InstitutionDoctorProfile
 from patients.models import patientAppointment
-from acc.forms import DoctorProfileForm
+from acc.forms import DoctorProfileForm, InstitutionDoctorProfileForm
 from patients.forms import PatientAppointmentForm
 # Create your views here.
 
 def dashboard(request):
-    profile = get_object_or_404(DoctorProfile, doctor=request.user.id)
-    doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
+    # profile = get_object_or_404(DoctorProfile, doctor=request.user.id)
+    if request.user.institution != 'Private':
+        doc = get_object_or_404(InstitutionDoctorProfile, doctor=request.user.username)
+    else:
+        doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
+        
     appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
     
     context = {
-        'profile': profile,
+        'profile': doc,
         'appointments': appointments,
     }
     return render(request, 'doc_dash.html', context)
 
 def profile(request):
-    doctor = get_object_or_404(DoctorProfile, doctor=request.user.id)
-    if request.method == 'POST':
-        form = DoctorProfileForm(request.POST, request.FILES, instance=doctor)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile Updated Successful')
-            return redirect('doctors:profile')  # Change 'success_url' to your desired success URL
-    else:
-        form = DoctorProfileForm(instance=doctor)
+    if request.user.institution != 'Private':
+        
+        doctor = get_object_or_404(InstitutionDoctorProfile, doctor=request.user.username)
+        if request.method == 'POST':
+            form = InstitutionDoctorProfileForm(request.POST, request.FILES, instance=doctor)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Profile Updated Successful')
+                return redirect('doctors:profile')  # Change 'success_url' to your desired success URL
+        else:
+            form = InstitutionDoctorProfileForm(instance=doctor)
 
-    return render(request, 'doc_profile.html', {'form': form, 'profile': doctor})
+        return render(request, 'doc_profile.html', {'form': form, 'profile': doctor})
+    
+    else:
+        
+        doctor = get_object_or_404(DoctorProfile, doctor=request.user.id)
+        if request.method == 'POST':
+            form = DoctorProfileForm(request.POST, request.FILES, instance=doctor)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Profile Updated Successful')
+                return redirect('doctors:profile')  # Change 'success_url' to your desired success URL
+        else:
+            form = DoctorProfileForm(instance=doctor)
+
+        return render(request, 'doc_profile.html', {'form': form, 'profile': doctor})
 
 def updateInPatient(request, pk=None):
     if pk:

@@ -1,4 +1,5 @@
 {% extends 'institution.html' %}
+{% load custom_filters %}
 {% load static %}
 {% block content %}
 <header class="mb-3">
@@ -24,7 +25,7 @@
                 </div>
                 <div class="col-md-8">
                   <h6 class="text-muted font-semibold">Members</h6>
-                  <h6 class="font-extrabold mb-0">112.000</h6>
+                  <h6 class="font-extrabold mb-0">{{ profile.total_employees }}</h6>
                 </div>
               </div>
             </div>
@@ -41,12 +42,13 @@
                 </div>
                 <div class="col-md-8">
                   <h6 class="text-muted font-semibold">Doctors</h6>
-                  <h6 class="font-extrabold mb-0">183.000</h6>
+                  <h6 class="font-extrabold mb-0">{{ profile.total_doctors }}</h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="col-6 col-lg-3 col-md-6">
           <div class="card">
             <div class="card-body px-3 py-4-5">
@@ -58,7 +60,7 @@
                 </div>
                 <div class="col-md-8">
                   <h6 class="text-muted font-semibold">Sub-Ordinates</h6>
-                  <h6 class="font-extrabold mb-0">80.000</h6>
+                  <h6 class="font-extrabold mb-0">{{ profile.total_staff }}</h6>
                 </div>
               </div>
             </div>
@@ -75,7 +77,7 @@
                 </div>
                 <div class="col-md-8">
                   <h6 class="text-muted font-semibold">Patients</h6>
-                  <h6 class="font-extrabold mb-0">112</h6>
+                  <h6 class="font-extrabold mb-0">{{ profile.total_patients }}</h6>
                 </div>
               </div>
             </div>
@@ -83,91 +85,43 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4>Hospital Visits</h4>
-            </div>
-            <div class="card-body">
-              <div id="chart-profile-visit"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <h4>Gender Visits Over Time</h4>
-            </div>
-            <div class="card-body">
-              <div id="area"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
+        <!-- Bordered table start -->
         <section class="section">
-          <div class="row" id="table-hover-row">
+          <div class="row" id="table-bordered">
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">Recent Transactions</h4>
+                  <h4 class="card-title">All Doctors</h4>
                 </div>
                 <div class="card-content">
+                  <div class="card-body">
+                  </div>
+                  <!-- table bordered -->
                   <div class="table-responsive">
-                    <table class="table table-hover mb-0">
+                    <table class="table table-bordered mb-0">
                       <thead>
                         <tr>
-                          <th>NAME</th>
-                          <th>RATE</th>
-                          <th>SKILL</th>
-                          <th>TYPE</th>
-                          <th>LOCATION</th>
-                          <th>ACTION</th>
+                          <th>Employee No.</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phone No.</th>
+                          <th>Specialization</th>
+                          <th>Department</th>
+                          <th>Info</th>
                         </tr>
                       </thead>
                       <tbody>
+                        {% for doctor in doctors %}
                         <tr>
-                          <td class="text-bold-500">Michael Right</td>
-                          <td>$15/hr</td>
-                          <td class="text-bold-500">UI/UX</td>
-                          <td>Remote</td>
-                          <td>Austin,Taxes</td>
-                          <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
+                          <td class="text-bold-500">{{ doctor.employee_id }}</td>
+                          <td>{{ doctor.name }}</td>
+                          <td class="text-bold-500">{{ doctor.email }}</td>
+                          <td>{{ doctor.phone_number }}</td>
+                          <td>{{ doctor.specialization }}</td>
+                          <td>{{ doctor.department }}</td>
+                          <td class="text-center"><a href="{% url 'institutions:doctor' doctor.name|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                         </tr>
-                        <tr>
-                          <td class="text-bold-500">Morgan Vanblum</td>
-                          <td>$13/hr</td>
-                          <td class="text-bold-500">Graphic concepts</td>
-                          <td>Remote</td>
-                          <td>Shangai,China</td>
-                          <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
-                        </tr>
-                        <tr>
-                          <td class="text-bold-500">Tiffani Blogz</td>
-                          <td>$15/hr</td>
-                          <td class="text-bold-500">Animation</td>
-                          <td>Remote</td>
-                          <td>Austin,Texas</td>
-                          <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
-                        </tr>
-                        <tr>
-                          <td class="text-bold-500">Ashley Boul</td>
-                          <td>$15/hr</td>
-                          <td class="text-bold-500">Animation</td>
-                          <td>Remote</td>
-                          <td>Austin,Texas</td>
-                          <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
-                        </tr>
-                        <tr>
-                          <td class="text-bold-500">Mikkey Mice</td>
-                          <td>$15/hr</td>
-                          <td class="text-bold-500">Animation</td>
-                          <td>Remote</td>
-                          <td>Austin,Texas</td>
-                          <td><a href="#"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="mail"></i></a></td>
-                        </tr>
+                        {% endfor %}
                       </tbody>
                     </table>
                   </div>
@@ -176,66 +130,65 @@
             </div>
           </div>
         </section>
+        <!-- Bordered table end -->
+      </div>
+      <div class="row">
+        <section class="section">
+          <div class="row" id="table-bordered">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">All Staffs</h4>
+                </div>
+                <div class="card-content">
+                  <div class="card-body">
+                  </div>
+                  <!-- table bordered -->
+                  <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                      <thead>
+                        <tr>
+                          <th>Employee No.</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phone No.</th>
+                          <th>Position</th>
+                          <th>Department</th>
+                          <th>Info</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for staff in staffs %}
+                        <tr>
+                          <td class="text-bold-500">{{ staff.employee_id }}</td>
+                          <td>{{ staff.name }}</td>
+                          <td class="text-bold-500">{{ staff.email }}</td>
+                          <td>{{ staff.phone_number }}</td>
+                          <td>{{ staff.position }}</td>
+                          <td>{{ staff.department }}</td>
+                          <td class="text-center"><a href="{% url 'institutions:staff' staff.name|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Bordered table end -->
       </div>
     </div>
     <div class="col-12 col-lg-3">
       <div class="card">
         <div class="card-body py-2 px-3">
           <div class="d-flex">
-            <div class="avatar avatar-xl">
-              <img src="{% static 'dashboard/images/faces/1.jpg' %}" alt="Face 1">
-            </div>
             <div class="ms-1 name">
               <h5 class="font-bold">{{ request.user.username }}</h5>
               <h6 class="text-muted mb-0">{{ request.user.email }}</h6>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h4>Recent Messages</h4>
-        </div>
-        <div class="card-content pb-4">
-          <div class="recent-message d-flex px-4 py-3">
-            <div class="avatar avatar-lg">
-              <img src="{% static 'dashboard/images/faces/4.jpg' %}">
-            </div>
-            <div class="name ms-4">
-              <h5 class="mb-1">Hank Schrader</h5>
-              <h6 class="text-muted mb-0">@johnducky</h6>
-            </div>
-          </div>
-          <div class="recent-message d-flex px-4 py-3">
-            <div class="avatar avatar-lg">
-              <img src="{% static 'dashboard/images/faces/5.jpg' %}">
-            </div>
-            <div class="name ms-4">
-              <h5 class="mb-1">Dean Winchester</h5>
-              <h6 class="text-muted mb-0">@imdean</h6>
-            </div>
-          </div>
-          <div class="recent-message d-flex px-4 py-3">
-            <div class="avatar avatar-lg">
-              <img src="{% static 'dashboard/images/faces/1.jpg' %}">
-            </div>
-            <div class="name ms-4">
-              <h5 class="mb-1">John Dodol</h5>
-              <h6 class="text-muted mb-0">@dodoljohn</h6>
-            </div>
-          </div>
-          <div class="px-4">
-            <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>Start
-                                        Conversation</button>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header">
-          <h4>Visitors Profile</h4>
-        </div>
-        <div class="card-body">
-          <div id="chart-visitors-profile"></div>
         </div>
       </div>
     </div>
