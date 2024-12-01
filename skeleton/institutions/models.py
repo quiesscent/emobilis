@@ -101,7 +101,7 @@ class doctorAppointment(models.Model):
         ],
         default='Morning'
     )
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(InstitutionDoctorProfile, on_delete=models.CASCADE)
     reason_for_visit = models.TextField()
     symptoms = models.TextField(blank=True, null=True)  # Optional field
     emergency_contact_name = models.CharField(max_length=100)

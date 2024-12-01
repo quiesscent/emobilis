@@ -56,10 +56,17 @@
                     <i class="iconly-boldAdd-User"></i>
                   </div>
                 </div>
+                {% if request.user.institution == 'Private' %}
                 <div class="col-md-8">
                   <h6 class="text-muted font-semibold">Reports</h6>
                   <h6 class="font-extrabold mb-0">{{ profile.total_reports }}</h6>
                 </div>
+                {% else %}
+                <div class="col-md-8">
+                  <h6 class="text-muted font-semibold">Patient Treated</h6>
+                  <h6 class="font-extrabold mb-0">{{ profile.total_patients_treated }}</h6>
+                </div>
+                {% endif %}
               </div>
             </div>
           </div>

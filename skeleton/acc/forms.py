@@ -15,7 +15,7 @@ class DoctorProfileForm(forms.ModelForm):
             'profile',
         ]
         widgets = {
-            'doctor': forms.Select(attrs={'class': 'form-control'}),
+            'doctor': forms.TextInput(attrs={'class': 'form-control'}),
             'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'gender': forms.Select(choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], attrs={'class': 'form-control'}),
             'phone_number': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -38,7 +38,7 @@ class PatientProfileForm(forms.ModelForm):
             'profile',
         ]
         widgets = {
-            'patient': forms.Select(attrs={'class': 'form-control'}),
+            'patient': forms.TextInput(attrs={'class': 'form-control'}),
             'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'gender': forms.TextInput(attrs={'class': 'form-control'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),

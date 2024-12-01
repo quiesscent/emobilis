@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-
 class CustomUser(AbstractUser):
     USER_TYPE_CHOICES = (
         ('patient', 'Patient'),
@@ -25,19 +24,19 @@ class CustomUser(AbstractUser):
         return self.username
 
 class DoctorProfile(models.Model):
-    doctor = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    date_of_birth = models.DateField()
+    doctor = models.CharField(unique=True, max_length=200)
+    date_of_birth = models.DateField(default='2024-11-29')
     gender = models.CharField(default='', max_length=10)
-    phone_number = models.IntegerField()
+    phone_number = models.IntegerField(default=0)
     specialization = models.CharField(default='', max_length=20)
-    license_no = models.IntegerField()
+    license_no = models.IntegerField(default=0)
     profile = models.ImageField(upload_to='doctors/')
     total_appointments = models.PositiveIntegerField(default=0)
     total_patients = models.PositiveIntegerField(default=0)
     total_reports = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f'{self.doctor.username}'
+        return f'{self.doctor}'
 
 class InstitutionDoctorProfile(models.Model):
     doctor = models.CharField(unique=True, max_length=200)
@@ -52,26 +51,25 @@ class InstitutionDoctorProfile(models.Model):
     total_appointments = models.PositiveIntegerField(default=0)
     total_patients = models.PositiveIntegerField(default=0)
     total_reports = models.PositiveIntegerField(default=0)
+    total_patients_treated = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f'{self.doctor}'
 
 class PatientProfile(models.Model):
-    patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    # patient_id = models.IntegerField(unique=True)
-    date_of_birth = models.DateField()
+    patient = models.CharField(unique=True, max_length=200)
+    date_of_birth = models.DateField(default='2024-11-29')
     gender = models.CharField(default='', max_length=10)
-    phone_number = models.IntegerField()
+    phone_number = models.IntegerField(default=0)
     adress = models.CharField(default='', max_length=20)
     emergency_contact_name = models.CharField(default='', max_length=20)
-    emergency_contact_number = models.IntegerField(default='')
+    emergency_contact_number = models.IntegerField(default=0)
     profile = models.ImageField(upload_to='patients/')
     total_appointments = models.PositiveIntegerField(default=0)
-    total_doctors = models.PositiveIntegerField(default=0)
-    total_profile_visits = models.PositiveIntegerField(default=0)
+    total_visits = models.PositiveIntegerField(default=0)
     
     def __str__(self):
-        return f'{self.patient.username}'
+        return f'{self.patient}'
 
 class InstitutionProfile(models.Model):
     institution = models.CharField(unique=True, max_length=200)

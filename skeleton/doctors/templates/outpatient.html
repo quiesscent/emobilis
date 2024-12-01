@@ -37,7 +37,7 @@
                   <td>{{ patient.medication  }}</td>
                   <td>{{ patient.assigned_doctor }}</td>
                   <td>{{ patient.updated_at }}</td>
-                  <td class="text-center"><a href="{% url 'doctors:appointment' appointment.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{% url 'doctors:outpatient' patient.id %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

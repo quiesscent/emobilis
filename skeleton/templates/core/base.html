@@ -108,6 +108,8 @@
                                         <a href="{% url 'patients:dashboard' %}" class="dropdown-item">Dashboard</a>
                                         {% elif request.user.user_type == 'institution' %}
                                         <a href="{% url 'institutions:dashboard' %}" class="dropdown-item">Dashboard</a>
+                                        {% elif request.user.user_type == 'doctor' %}
+                                        <a href="{% url 'doctors:dashboard' %}" class="dropdown-item">Dashboard</a>
                                         {% else %}
                                         <a href="/admin" class="dropdown-item">Dashboard</a>
                                         {% endif %}

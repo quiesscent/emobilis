@@ -13,7 +13,7 @@ class PatientForm(forms.ModelForm):
             'date_of_birth': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'doctor': forms.Select(attrs={'class': 'form-control'}),
+            'doctor': forms.TextInput(attrs={'class': 'form-control'}),
             'emergency_contact_name': forms.TextInput(attrs={'class': 'form-control'}),
             'emergency_contact_phone': forms.TextInput(attrs={'class': 'form-control'}),
             'medical_history': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
@@ -27,7 +27,7 @@ class MedicalReportForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'patient': forms.Select(attrs={'class': 'form-control'}),
-            'doctor': forms.Select(attrs={'class': 'form-control'}),
+            'doctor': forms.TextInput(attrs={'class': 'form-control'}),
             'report_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'diagnosis': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'treatment': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),

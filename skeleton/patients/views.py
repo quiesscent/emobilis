@@ -11,17 +11,14 @@ from institutions.models import Doctor
 
 def dashboard(request):
     
-    patient = get_object_or_404(PatientProfile, patient=request.user.id)
+    patient = get_object_or_404(PatientProfile, patient=request.user.username)
+    appointments = patientAppointment.objects.filter(patient=request.user.username)
     
-    return render(request, 'pat_index.html')
+    return render(request, 'pat_index.html', {'patient': patient, 'appointments': appointments})
 
 def profile(request):
-    
-    try:
-        patient = get_object_or_404(PatientProfile, patient=request.user.id)
-    
-    except:
-        patient = None
+
+    patient = get_object_or_404(PatientProfile, patient=request.user.username)
         
     if request.method == 'POST':
         form = PatientProfileForm(request.POST, request.FILES, instance=patient)
@@ -35,12 +32,11 @@ def profile(request):
         form.fields['patient'].initial = request.user.username
         
 
-    return render(request, 'pat_profile.html', {'form': form, 'profile': patient})
+    return render(request, 'pat_profile.html', {'form': form, 'patient': patient})
 
     
 def doctor(request, name):
     name = name.replace('-', ' ').replace("_", ".")
-    
     doctor = get_object_or_404(CustomUser, username__iexact=name)
     try:
         profile = get_object_or_404(DoctorProfile, doctor=doctor)
@@ -52,8 +48,6 @@ def doctor(request, name):
         return redirect('patients:doctors')
         
     return render(request, 'pat_doctors.html')
-    
-        
     
 
 def doctors(request):

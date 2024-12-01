@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from institutions.models import InPatientRecord, OutPatientRecord
+from institutions.models import InPatientRecord, OutPatientRecord, doctorAppointment
 from institutions.forms import InPatientRecordForm, OutPatientRecordForm
 from .forms import PatientForm, MedicalReportForm
 from .models import Patient, MedicalReport
@@ -14,14 +14,14 @@ def dashboard(request):
     # profile = get_object_or_404(DoctorProfile, doctor=request.user.id)
     if request.user.institution != 'Private':
         doc = get_object_or_404(InstitutionDoctorProfile, doctor=request.user.username)
+        appointments = {}
     else:
-        doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
-        
-    # appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
+        doc = get_object_or_404(DoctorProfile, doctor=request.user.username) 
+        appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
     
     context = {
         'profile': doc,
-        # 'appointments': appointments,
+        'appointments': appointments,
     }
     return render(request, 'doc_dash.html', context)
 
@@ -42,7 +42,7 @@ def profile(request):
     
     else:
         
-        doctor = get_object_or_404(DoctorProfile, doctor=request.user.id)
+        doctor = get_object_or_404(DoctorProfile, doctor=request.user.username)
         if request.method == 'POST':
             form = DoctorProfileForm(request.POST, request.FILES, instance=doctor)
             if form.is_valid():
@@ -88,8 +88,7 @@ def updateOutPatient(request, pk=None):
     
 
 def updatePatient(request):
-    form = PatientForm()
-    form.fields['doctor'].initial = request.user.username
+    form = PatientForm(initial={ 'doctor': request.user.username })
         
     if request.method == "POST":
         form = PatientForm(request.POST)
@@ -99,6 +98,7 @@ def updatePatient(request):
             return redirect('doctors:patients')
         else:
             print("invalid")
+            
     return render(request, 'doc_add_patient.html', {'form': form})
 
 def patient(request, pk=None):
@@ -114,26 +114,36 @@ def patient(request, pk=None):
             messages.success(request, 'Patient Information Updated Successfully')
             
     else:
-        form = PatientForm(instance=patient)
-    
+        
+        form = PatientForm(instance=patient, initial={ 'doctor': request.user.username })
+        
     context = {
         'patient': patient,
         'form': form
     }
+    
     return render(request, 'doc_update_patient.html', context)
 
 def appointments(request):
     
-    doc = get_object_or_404(DoctorProfile, doctor__id=request.user.id) 
-    appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
+    if request.user.institution == 'Private':
+        
+        doc = get_object_or_404(DoctorProfile, doctor=request.user.username) 
+        appointments = patientAppointment.objects.filter(doctor=doc).order_by('-id')
+        
+    else:
+        
+        doctor = get_object_or_404(InstitutionDoctorProfile, doctor=request.user.username)
+        appointments = doctorAppointment.objects.filter(doctor=doctor).order_by('-id')
+    
     context = {
         'appointments':appointments
     }
+    
     return render(request, 'doc_appointments.html', context)
 
 def appointment(request, pk):
     if pk:
-        
         patient = get_object_or_404(patientAppointment, id=pk)
 
     if request.method == "POST":
@@ -141,25 +151,32 @@ def appointment(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, 'Patient Information Updated Successfully')
-            
+                        
     else:
+        
         form = PatientAppointmentForm(instance=patient)
     
     context = {
         'patient': patient,
         'form': form
     }
+    
     return render(request, 'doc_appointment.html', context)
 
 def add_record(request):
+    
     if request.method == 'POST':
+        
         form = MedicalReportForm(request.POST)
+        
         if form.is_valid():
             form.save()
             messages.success(request, 'Record Uploaded Successfully')
-            return redirect('doctors:records')  # Change 'success_url' to your desired success URL
+            return redirect('doctors:records')
+         
     else:
-        form = MedicalReportForm()
+        
+        form = MedicalReportForm(initial={ 'doctor': request.user.username })
             
     return render(request, 'doc_add_record.html', {'form': form})
 
@@ -184,27 +201,28 @@ def record(request, pk):
 
 def records(request):
     
-    doctor = get_object_or_404(DoctorProfile, doctor=request.user.id)
+    doctor = get_object_or_404(DoctorProfile, doctor=request.user.username)
     records = MedicalReport.objects.filter(doctor=doctor).order_by('-id')
     return render(request, 'records.html', { 'records': records })
 
 def patients(request):
-    
-    doctor = get_object_or_404(DoctorProfile, doctor=request.user.id)
+    doctor = get_object_or_404(DoctorProfile, doctor=request.user.username)
     patients = Patient.objects.filter(doctor=doctor).order_by('-id')
     return render(request, 'patient.html', { 'patients': patients })
 
 
 def outPatients(request):
-    patients = OutPatientRecord.objects.filter(assigned_doctor=request.user.id).order_by('-id')
+    doctor = get_object_or_404(InstitutionDoctorProfile, doctor=request.user.username)
+    patients = OutPatientRecord.objects.filter(assigned_doctor=doctor).order_by('-id')
     return render(request, 'outpatient.html', { 'patients': patients })
 
 
 def inPatients(request):
-    patients = InPatientRecord.objects.filter(assigned_doctor=request.user.id).order_by('-id')
+    doctor = get_object_or_404(InstitutionDoctorProfile, doctor=request.user.username)
+    patients = InPatientRecord.objects.filter(assigned_doctor=doctor).order_by('-id')
     return render(request, 'inpatient.html', { 'patients': patients })
 
-
+    
 def deleteappointments(request, pk):
     instance = get_object_or_404(Appointment, id=pk)
     instance.delete()

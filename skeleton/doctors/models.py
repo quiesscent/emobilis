@@ -27,7 +27,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     address = models.TextField()
-    doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
+    doctor = models.CharField(max_length=50, blank=True, null=True)
     emergency_contact_name = models.CharField(max_length=50, blank=True, null=True)
     emergency_contact_phone = models.CharField(max_length=15, blank=True, null=True)
     medical_history = models.TextField(blank=True, null=True)
@@ -41,7 +41,7 @@ class Patient(models.Model):
 
 class MedicalReport(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    doctor = models.ForeignKey(DoctorProfile, on_delete=models.CASCADE)
+    doctor = models.CharField(max_length=50, blank=True, null=True)
     report_date = models.DateField(default=timezone.now)
     diagnosis = models.TextField()
     treatment = models.TextField(blank=True, null=True)
