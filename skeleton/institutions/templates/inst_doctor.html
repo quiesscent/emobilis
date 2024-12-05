@@ -30,12 +30,12 @@
                 {% for doctor in doctors %}
                 <tr>
                   <td class="text-bold-500">{{ doctor.employee_id }}</td>
-                  <td>{{ doctor.username }}</td>
+                  <td>{{ doctor.name }}</td>
                   <td class="text-bold-500">{{ doctor.email }}</td>
                   <td>{{ doctor.phone_number }}</td>
                   <td>{{ doctor.specialization }}</td>
                   <td>{{ doctor.department }}</td>
-                  <td class="text-center"><a href="{% url 'institutions:doctor' doctor.username|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
+                  <td class="text-center"><a href="{% url 'institutions:doctor' doctor.name|custom_slugify %}"><i class='bx bx-info-circle' style="font-size: 24px;"></i></a></td>
                 </tr>
                 {% endfor %}
               </tbody>

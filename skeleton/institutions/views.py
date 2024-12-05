@@ -36,7 +36,7 @@ def profile(request):
 
 # view data
 def doctors(request):
-    doctors = CustomUser.objects.filter(institution=request.user.username).exclude(user_type='institution').order_by('-id')
+    doctors = Doctor.objects.filter(institution=request.user.username).order_by('-id')
     return render(request, 'inst_doctor.html', { 'doctors': doctors })
 
 def patients(request):

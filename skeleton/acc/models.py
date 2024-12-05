@@ -30,7 +30,7 @@ class DoctorProfile(models.Model):
     phone_number = models.IntegerField(default=0)
     specialization = models.CharField(default='', max_length=20)
     license_no = models.IntegerField(default=0)
-    profile = models.ImageField(upload_to='doctors/')
+    profile = models.ImageField(upload_to='doctors/', default='profile.png')
     total_appointments = models.PositiveIntegerField(default=0)
     total_patients = models.PositiveIntegerField(default=0)
     total_reports = models.PositiveIntegerField(default=0)
@@ -64,7 +64,7 @@ class PatientProfile(models.Model):
     adress = models.CharField(default='', max_length=20)
     emergency_contact_name = models.CharField(default='', max_length=20)
     emergency_contact_number = models.IntegerField(default=0)
-    profile = models.ImageField(upload_to='patients/')
+    profile = models.ImageField(upload_to='patients/', default='profile.png')
     total_appointments = models.PositiveIntegerField(default=0)
     total_visits = models.PositiveIntegerField(default=0)
     

@@ -123,9 +123,11 @@
       <div class="card">
         <div class="card-body py-2 px-3">
           <div class="d-flex">
+            {% if request.user.institutions == 'Private' %}
             <div class="avatar avatar-xl">
               <img src="{{ doc_profile.url }}" alt="Face 1">
             </div>
+            {% endif %}
             <div class="ms-1 name">
               <h5 class="font-bold">{{ request.user.username }}</h5>
               <h6 class="text-muted mb-0">{{ request.user.email }}</h6>
