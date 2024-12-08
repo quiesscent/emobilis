@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from .registrations import generate_institution_id
 from django.contrib.auth import login, logout, authenticate
 from .models import CustomUser, InstitutionProfile, InstitutionDoctorProfile, DoctorProfile, PatientProfile
 # Create your views here.
@@ -40,6 +41,7 @@ def register(request):
 
 # institution registration
 def register_inst(request):
+    registration = generate_institution_id()
     if request.method == "POST":
         username = request.POST['username']
         email = request.POST['email']
@@ -48,7 +50,7 @@ def register_inst(request):
 
         check_user = True if CustomUser.objects.filter(username=username).exists() else False
         if check_user:
-            message.error(request, "Username Already Taken")
+            messages.error(request, "Username Already Taken")
             return redirect("acc:register")
 
         if password2 != password:
@@ -64,7 +66,7 @@ def register_inst(request):
                     institution=username,
                 )
             user.save()
-            profile = InstitutionProfile.objects.create(institution=username, email=email)
+            profile = InstitutionProfile.objects.create(institution=username, email=email, registration_number=registration)
             profile.save()
             
         messages.success(request, 'Welcome to MediSphere, Login to Access Dashboard')
