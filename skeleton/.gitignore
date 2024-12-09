@@ -11,3 +11,8 @@ commands.txt
 staticfiles/
 .vscode/
 .env
+management/
+mindful/
+mpesa/
+pregnancy/
+conversations/
